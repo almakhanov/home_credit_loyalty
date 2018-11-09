@@ -7,6 +7,7 @@
         <item
             android:id="@+id/nav_news"
             android:checked="true"
+            android:iconTint="#777"
             android:icon="@drawable/ic_home_black_24dp"
             android:title="Главная" />
 
@@ -30,6 +31,7 @@
         <item
             android:id="@+id/nav_about"
             android:icon="@drawable/ic_info_outline_black_24dp"
+            android:iconTint="#777"
             android:title="О нас" />
     </group>
 

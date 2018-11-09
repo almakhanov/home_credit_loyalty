@@ -1,6 +1,5 @@
 package kz.batana.homecreditloyalty.mainMenu
 
-import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.NavigationView
@@ -19,9 +18,9 @@ import kz.batana.homecreditloyalty.auth.LoginActivity
 import kz.batana.homecreditloyalty.task.TasksFragment
 
 class MainMenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
-    var currentFragment: Fragment?=null
+    var currentFragment: Fragment? = null
     var fragmentManager: FragmentManager = supportFragmentManager
-//    val eventService:EventService by inject()
+    //    val eventService:EventService by inject()
 //    companion object {
 //        var user:User?=null
 //    }
@@ -31,26 +30,31 @@ class MainMenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
         setSupportActionBar(toolbar)
 //        var intent = intent
 //        user = intent.getSerializableExtra("user") as User
-        toolbar.title = "Задании"
+        toolbar.title = "Home Credit"
+
         var tasksFragment = TasksFragment()
 //        var headerView = nav_view.getHeaderView(0)
 //        Logger.msg(user)
 //        headerView.textViewUserName.text = user?.name
 //        headerView.bonusTextView.text = user?.decopoint.toString()
 //        headerView.textViewUserEmail.text = user?.email
-        fragmentManager.beginTransaction().add(R.id.content,tasksFragment).commit()
+        fragmentManager.beginTransaction().add(R.id.content, tasksFragment).commit()
         val toggle = ActionBarDrawerToggle(
                 this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close
         )
         drawer_layout.addDrawerListener(toggle)
         toggle.syncState()
+
+
         nav_view.setNavigationItemSelectedListener(this)
 
     }
-    fun updatePoints(points:Int){
+
+    fun updatePoints(points: Int) {
         var headerView = nav_view.getHeaderView(0)
 //        headerView.bonusTextView.text = points.toString()
     }
+
     override fun onBackPressed() {
         if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
             drawer_layout.closeDrawer(GravityCompat.START)
@@ -64,6 +68,7 @@ class MainMenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
 //        var headerView = nav_view.getHeaderView(0)
 //        headerView.bonusTextView.text = user?.decopoint.toString()
     }
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
 
         menuInflater.inflate(R.menu.main_menu, menu)
@@ -86,8 +91,8 @@ class MainMenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.nav_news -> {
-                toolbar.title = "Мероприятий"
-                currentFragment =  TasksFragment()
+                toolbar.title = "Главная"
+                currentFragment = TasksFragment()
             }
 //            R.id.nav_store -> {
 //                toolbar.title = "Магазин"
@@ -108,12 +113,9 @@ class MainMenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
 //
             R.id.nav_about -> {
                 val builder = AlertDialog.Builder(this)
-                builder.setMessage("The app was developed by: \nNursultan Almakhanov\nAskhat Telzhanov\nAibek Bekbayev" +
-                        "\nElibay Nuptebek\nAnvar Umarov\nAisultan Kali\n" +
-                        "French Hackathon\nAlmaty 2018")
-                        .setPositiveButton("Good!", DialogInterface.OnClickListener { dialog, id ->
-                            // FIRE ZE MISSILES!
-                        })
+                builder.setMessage("The app was developed by: \nNursultan Almakhanov\nAskhat Telzhanov\nAibek Bekbayev\nAyan Kurmanbay" +
+                        "\nHackday Almaty 2018")
+                        .setPositiveButton("Good!", { dialog, id ->})
                 // Create the AlertDialog object and return it
                 builder.create()
                 drawer_layout.closeDrawer(GravityCompat.START)
@@ -121,7 +123,7 @@ class MainMenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
                 return true
             }
         }
-        fragmentManager.beginTransaction().replace(R.id.content,currentFragment!!).commit()
+        fragmentManager.beginTransaction().replace(R.id.content, currentFragment!!).commit()
         drawer_layout.closeDrawer(GravityCompat.START)
         return true
     }

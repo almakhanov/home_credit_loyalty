@@ -96,7 +96,7 @@
             android:id="@+id/loginSignInButton"
             android:layout_width="match_parent"
             android:layout_height="@dimen/login_button_height"
-            android:background="@color/colorPrimary"
+            android:background="@color/colorIcons"
             android:text="@string/login_sign_in_button"
             android:textColor="@color/colorWhite"
             android:textAllCaps="false"
@@ -141,6 +141,6 @@
         android:layout_height="@dimen/login_button_height"
         android:background="@color/colorPrimary"
         android:text="@string/login_register_text"
-        android:textColor="@color/colorWhite"
+        android:textColor="@color/colorIcons"
         app:layout_constraintBottom_toBottomOf="parent" />
 </android.support.constraint.ConstraintLayout>
