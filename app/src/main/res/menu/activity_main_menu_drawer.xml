@@ -7,31 +7,29 @@
         <item
             android:id="@+id/nav_news"
             android:checked="true"
-            android:iconTint="#777"
             android:icon="@drawable/ic_home_black_24dp"
             android:title="Главная" />
 
-        <!--<item-->
-            <!--android:id="@+id/nav_store"-->
-            <!--android:icon="@drawable/ic_shopping_cart_black_24dp"-->
-            <!--android:title="Магазин" />-->
-        <!--<item-->
-            <!--android:id="@+id/nav_clubs"-->
-            <!--android:icon="@drawable/ic_directions_bike_black_24dp"-->
-            <!--android:title="Спорт клубы" />-->
-        <!--<item-->
-            <!--android:id="@+id/nav_history"-->
-            <!--android:icon="@drawable/ic_history_black_24dp"-->
-            <!--android:title="История" />-->
-        <!--<item-->
-            <!--android:id="@+id/nav_basket"-->
-            <!--android:icon="@drawable/ic_shopping_basket_black_24dp"-->
-            <!--android:title="Корзина" />-->
+        <item
+            android:id="@+id/nav_store"
+            android:icon="@drawable/ic_home_black_24dp"
+            android:title="Магазин" />
+        <item
+            android:id="@+id/nav_clubs"
+            android:icon="@drawable/ic_home_black_24dp"
+            android:title="Спорт клубы" />
+        <item
+            android:id="@+id/nav_history"
+            android:icon="@drawable/ic_home_black_24dp"
+            android:title="История" />
+        <item
+            android:id="@+id/nav_basket"
+            android:icon="@drawable/ic_home_black_24dp"
+            android:title="Корзина" />
 
         <item
             android:id="@+id/nav_about"
             android:icon="@drawable/ic_info_outline_black_24dp"
-            android:iconTint="#777"
             android:title="О нас" />
     </group>
 

@@ -17,6 +17,10 @@ import kz.batana.homecreditloyalty.R
 import kz.batana.homecreditloyalty.auth.LoginActivity
 import kz.batana.homecreditloyalty.task.TasksFragment
 
+
+
+
+
 class MainMenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     var currentFragment: Fragment? = null
     var fragmentManager: FragmentManager = supportFragmentManager
@@ -125,6 +129,7 @@ class MainMenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
         }
         fragmentManager.beginTransaction().replace(R.id.content, currentFragment!!).commit()
         drawer_layout.closeDrawer(GravityCompat.START)
+
         return true
     }
 
