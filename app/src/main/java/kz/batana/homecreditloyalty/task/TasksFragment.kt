@@ -1,21 +1,21 @@
 package kz.batana.homecreditloyalty.task
 
 import android.os.Bundle
-import android.os.Handler
 import android.support.v4.app.Fragment
+import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ProgressBar
+import android.widget.LinearLayout
 import kotlinx.android.synthetic.main.tasks_fragment.*
 import kz.batana.homecreditloyalty.R
+import kz.batana.homecreditloyalty.entity.Task
 
 
 @Suppress("DEPRECATION")
-class TasksFragment: Fragment(){
-    var progressBar: ProgressBar? = null
-    private var progressBarStatus = 0
-    private var progressBarHandler = Handler()
+class TasksFragment: Fragment(), CurrentTasksAdapter.OnItemClickListener {
+
+    private lateinit var currentTasksAdapter: CurrentTasksAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.tasks_fragment,container,false)
@@ -24,55 +24,50 @@ class TasksFragment: Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val taskList = ArrayList<Task>()
+        taskList.apply {
+            add(Task(1, "Lorem ipsum dolor sit amet", "20-12-2018", "15-04-2019",
+                    "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+                    50, "onProgress", 30))
+            add(Task(1, "Lorem ipsum dolor sit amet", "20-12-2018", "15-04-2019",
+                    "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+                    50, "onProgress", 30))
+            add(Task(1, "Lorem ipsum dolor sit amet", "20-12-2018", "15-04-2019",
+                    "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+                    50, "onProgress", 30))
+            add(Task(1, "Lorem ipsum dolor sit amet", "20-12-2018", "15-04-2019",
+                    "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+                    50, "onProgress", 30))
+            add(Task(1, "Lorem ipsum dolor sit amet", "20-12-2018", "15-04-2019",
+                    "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+                    50, "onProgress", 30))
+            add(Task(1, "Lorem ipsum dolor sit amet", "20-12-2018", "15-04-2019",
+                    "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+                    50, "onProgress", 30))
+            add(Task(1, "Lorem ipsum dolor sit amet", "20-12-2018", "15-04-2019",
+                    "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+                    50, "onProgress", 30))
+            add(Task(1, "Lorem ipsum dolor sit amet", "20-12-2018", "15-04-2019",
+                    "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+                    50, "onProgress", 30))
+        }
+        setTasks(taskList)
 
         progressBarLevel.visibility = View.VISIBLE
         progressBarLevel.progress = 0
         progressBarLevel.max = 100
         progressBarLevel.progressDrawable = activity!!.resources.getDrawable(R.drawable.custom_progress_bar)
-
-
-        progressBarStatus = 0
-
-        Thread(Runnable {
-            while (progressBarStatus < 100) {
-
-                // process some tasks
-                progressBarStatus = DoWork()
-
-                try {
-                    Thread.sleep(300)
-                } catch (e: InterruptedException) {
-                    e.printStackTrace()
-                }
-
-                // Update the progress bar
-                progressBarHandler.post { progressBarLevel!!.progress = progressBarStatus }
-            }
-        }).start()
+        progressBarLevel.progress = 75
     }
 
-    // DoWork & Set Status Progress Bar
-    fun DoWork(): Int {
+    private fun setTasks(taskList: ArrayList<Task>){
+        recyclerCurrentTasks?.layoutManager = LinearLayoutManager(activity, LinearLayout.VERTICAL, false)
+        currentTasksAdapter = CurrentTasksAdapter(taskList, this)
+        recyclerCurrentTasks?.adapter = currentTasksAdapter
+    }
 
-        // Do some work EG: Save , Download , Insert , ..
-        // **** Work
-        // **** Work
-        // **** Work
-        // **** Work
-        progressBarStatus++ // Work process and return status
 
-        if (progressBarStatus < 100) {
-            return progressBarStatus
-        }
-
-        // When Finish
-        try {
-            Thread.sleep(1000)
-        } catch (e: InterruptedException) {
-            e.printStackTrace()
-        }
-
-        return 100
+    override fun onItemClicked(course: Task) {
 
     }
 

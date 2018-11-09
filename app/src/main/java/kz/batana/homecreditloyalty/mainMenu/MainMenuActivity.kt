@@ -30,7 +30,7 @@ class MainMenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
         setSupportActionBar(toolbar)
 //        var intent = intent
 //        user = intent.getSerializableExtra("user") as User
-        toolbar.title = "Home Credit"
+        toolbar.title = "Главная"
 
         var tasksFragment = TasksFragment()
 //        var headerView = nav_view.getHeaderView(0)
