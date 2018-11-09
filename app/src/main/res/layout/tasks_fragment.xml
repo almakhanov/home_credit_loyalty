@@ -7,8 +7,10 @@
 
 
     <android.support.constraint.ConstraintLayout
+        android:id="@+id/mainLayout1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@drawable/outline_list_fields_gray">
 
         <TextView
             android:id="@+id/levelText"
@@ -55,7 +57,7 @@
             android:text="Заработано:"
             android:textSize="18sp"
             android:textColor="@color/colorSecondaryText"
-            android:textStyle="bold"
+            android:textStyle="normal"
             app:layout_constraintTop_toBottomOf="@id/levelPrev"
             app:layout_constraintLeft_toLeftOf="parent"
             android:layout_margin="16dp"
@@ -80,7 +82,7 @@
             android:text="Осталось:"
             android:textSize="18sp"
             android:textColor="@color/colorSecondaryText"
-            android:textStyle="bold"
+            android:textStyle="normal"
             app:layout_constraintTop_toBottomOf="@id/textCurrentGot"
             app:layout_constraintLeft_toLeftOf="parent"
             android:layout_margin="16dp"
@@ -96,9 +98,64 @@
             app:layout_constraintTop_toBottomOf="@id/textCurrentGot"
             app:layout_constraintLeft_toRightOf="@id/textCurrentNeed"
             android:layout_margin="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             />
 
     </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        app:layout_constraintTop_toBottomOf="@id/mainLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/layoutTmp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/recyclerCurrentTasks"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textCurrentTitleCurrent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="Текущие задачи"
+                android:textSize="18sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/ivIconTask"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <ImageView
+                android:id="@+id/ivIconTask"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:src="@drawable/ic_assignment_black_24dp"
+                android:tint="@color/colorTextDefault"
+                app:layout_constraintLeft_toRightOf="@id/textCurrentTitleCurrent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerCurrentTasks"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            app:layout_constraintTop_toBottomOf="@id/layoutTmp"
+            >
+
+        </android.support.v7.widget.RecyclerView>
+
+    </android.support.constraint.ConstraintLayout>
+
+
 
 
 
