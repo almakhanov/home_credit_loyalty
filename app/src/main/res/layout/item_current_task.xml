@@ -5,6 +5,7 @@
     android:layout_height="wrap_content"
     android:background="@drawable/outline_list_fields_gray"
     android:padding="8dp"
+    android:layout_margin="4dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <android.support.constraint.ConstraintLayout

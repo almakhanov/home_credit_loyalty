@@ -61,7 +61,7 @@ class TasksFragment: Fragment(), CurrentTasksAdapter.OnItemClickListener {
     }
 
     private fun setTasks(taskList: ArrayList<Task>){
-        recyclerCurrentTasks?.layoutManager = LinearLayoutManager(activity, LinearLayout.VERTICAL, false)
+        recyclerCurrentTasks?.layoutManager = LinearLayoutManager(activity, LinearLayout.HORIZONTAL, false)
         currentTasksAdapter = CurrentTasksAdapter(taskList, this)
         recyclerCurrentTasks?.adapter = currentTasksAdapter
     }
