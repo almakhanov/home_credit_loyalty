@@ -12,7 +12,8 @@ data class Customer (
         @SerializedName("age") var age: Int,
         @SerializedName("current_points") var current_points: Int,
         @SerializedName("completed_tasks") var completed_tasks: Int,
-        @SerializedName("rank") var rank: String
+        @SerializedName("rank") var rank: String,
+        @SerializedName("levelup_points") var levelup_points: Int
 ): Parcelable {
     constructor(parcel: Parcel) : this(
             parcel.readString(),
@@ -22,7 +23,8 @@ data class Customer (
             parcel.readInt(),
             parcel.readInt(),
             parcel.readInt(),
-            parcel.readString()) {
+            parcel.readString(),
+            parcel.readInt()) {
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
@@ -34,6 +36,7 @@ data class Customer (
         parcel.writeInt(current_points)
         parcel.writeInt(completed_tasks)
         parcel.writeString(rank)
+        parcel.writeInt(levelup_points)
     }
 
     override fun describeContents(): Int {

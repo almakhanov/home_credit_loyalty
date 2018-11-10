@@ -5,6 +5,7 @@ import android.content.SharedPreferences
 import kz.batana.homecreditloyalty.auth.authModule
 import kz.batana.homecreditloyalty.core.coreModule
 import kz.batana.homecreditloyalty.core.createService
+import kz.batana.homecreditloyalty.history.HistoryService
 import kz.batana.homecreditloyalty.tasks_tabs.TasksService
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module.Module
@@ -21,7 +22,7 @@ val singletons = module {
     single { createSharedPrefs(androidContext()) }
 //    Logger.msg("accepted",Constants.URL )
     single { createService<TasksService>(get()) }
-//    single { createService<HistoryService>(get(), Constants.URL) }
+    single { createService<HistoryService>(get()) }
 //    single { createService<ClubService>(get(), Constants.URL) }
 }
 

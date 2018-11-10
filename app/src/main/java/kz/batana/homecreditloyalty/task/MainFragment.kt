@@ -17,6 +17,7 @@ import kz.batana.homecreditloyalty.Constants
 import kz.batana.homecreditloyalty.R
 import kz.batana.homecreditloyalty.core.util.Logger
 import kz.batana.homecreditloyalty.entity.Task
+import kz.batana.homecreditloyalty.mainMenu.MainMenuActivity
 import kz.batana.homecreditloyalty.tasks_tabs.TasksService
 import org.koin.android.ext.android.inject
 
@@ -30,9 +31,39 @@ class MainFragment: Fragment(), CurrentTasksAdapter.OnItemClickListener {
         return inflater.inflate(R.layout.tasks_fragment,container,false)
     }
 
-    @SuppressLint("CheckResult")
+    @SuppressLint("CheckResult", "SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        App.showProgress(activity!!)
+
+        progressBarLevel.visibility = View.VISIBLE
+        progressBarLevel.progress = 0
+        progressBarLevel.max = 200
+        progressBarLevel.progressDrawable = activity!!.resources.getDrawable(R.drawable.custom_progress_bar)
+
+
+        levelText.text = (MainMenuActivity.user!!.levelup_points / 200 + 1).toString() + " Уровень"
+        levelPrev.text = (MainMenuActivity.user!!.levelup_points / 200).toString() + " уровень"
+        levelNext.text = (MainMenuActivity.user!!.levelup_points / 200 + 2).toString() + " уровень"
+
+        progressBarLevel.progress = (MainMenuActivity.user!!.levelup_points % 200)
+        textPointsGotValue.text = (MainMenuActivity.user!!.levelup_points).toString() + " балла"
+        textPointsNeedValue.text = (200 - (MainMenuActivity.user!!.levelup_points % 200)).toString() + " балла"
+        textPointsTasksDoneValue.text = MainMenuActivity.user!!.completed_tasks.toString()
+        when(MainMenuActivity.user!!.levelup_points){
+            in 0..200 -> {
+                textPointsLevelValue.text = "Новичок"
+            }
+            in 200..400 -> {
+                textPointsLevelValue.text = "Специалист"
+            }
+            in 400..600 -> {
+                textPointsLevelValue.text = "Мастер"
+            }
+            in 600..800 -> {
+                textPointsLevelValue.text = "Чемпион"
+            }
+        }
 
         service.getTasks().subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -58,11 +89,7 @@ class MainFragment: Fragment(), CurrentTasksAdapter.OnItemClickListener {
                         })
 
 
-        progressBarLevel.visibility = View.VISIBLE
-        progressBarLevel.progress = 0
-        progressBarLevel.max = 100
-        progressBarLevel.progressDrawable = activity!!.resources.getDrawable(R.drawable.custom_progress_bar)
-        progressBarLevel.progress = 75
+
     }
 
     private fun setTasks(taskList: ArrayList<Task>){
