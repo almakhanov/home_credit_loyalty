@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".service.ServiceActivity">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:subtitleTextColor="@color/colorSecondaryText"
+        app:titleTextColor="#FFFF"
+        android:elevation="8dp"
+        app:popupTheme="@style/AppTheme.PopupOverlay"
+        android:theme="@style/ToolbarColored"/>
+
+    <android.support.constraint.ConstraintLayout
+    android:id="@+id/firstService"
+    android:layout_width="match_parent"
+    android:layout_height="64dp"
+    app:layout_constraintTop_toBottomOf="@id/toolbar"
+    android:background="@drawable/underline_border"
+    >
+
+    <ImageView
+        android:id="@+id/iconService"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="16dp"
+        android:src="@drawable/ic_phone_iphone_black_24dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        app:layout_constraintTop_toTopOf="@id/iconService"
+        app:layout_constraintBottom_toBottomOf="@id/iconService"
+        app:layout_constraintStart_toEndOf="@id/iconService"
+        android:layout_marginStart="16dp"
+        android:text="Мобильные услуги"/>
+
+    <ImageView
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@drawable/ic_navigate_next_black_24dp"/>
+</android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/secondService"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        app:layout_constraintTop_toBottomOf="@id/firstService"
+        android:background="@drawable/underline_border"
+        >
+
+        <ImageView
+            android:id="@+id/secondIcon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/ic_loop_red_24dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            app:layout_constraintTop_toTopOf="@id/secondIcon"
+            app:layout_constraintBottom_toBottomOf="@id/secondIcon"
+            app:layout_constraintStart_toEndOf="@id/secondIcon"
+            android:layout_marginStart="16dp"
+            android:text="Перевод на карту"/>
+
+        <ImageView
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:src="@drawable/ic_navigate_next_black_24dp"/>
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/thirdService"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        app:layout_constraintTop_toBottomOf="@id/secondService"
+        android:background="@drawable/underline_border"
+        >
+
+        <ImageView
+            android:id="@+id/thirdIcon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/ic_directions_bus_black_24dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            app:layout_constraintTop_toTopOf="@id/thirdIcon"
+            app:layout_constraintBottom_toBottomOf="@id/thirdIcon"
+            app:layout_constraintStart_toEndOf="@id/thirdIcon"
+            android:layout_marginStart="16dp"
+            android:text="Онай"/>
+
+        <ImageView
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:src="@drawable/ic_navigate_next_black_24dp"/>
+    </android.support.constraint.ConstraintLayout>
+
+
+
+</android.support.constraint.ConstraintLayout>

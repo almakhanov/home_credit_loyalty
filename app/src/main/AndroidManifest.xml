@@ -33,7 +33,20 @@
         <activity android:name=".registration.RegistrationActivity" />
         <activity
             android:name=".mainMenu.MainMenuActivity"
-            android:theme="@style/MyWhiteColorTheme">
+            android:label="@string/title_activity_main_menu"
+            android:theme="@style/MyWhiteColorTheme" />
+        <activity
+            android:name=".autoPayment.AutoPaymentActivity"
+            android:theme="@style/MyWhiteColorTheme" />
+        <activity
+            android:name=".creditCardAdd.CreditCardActivity"
+            android:theme="@style/MyWhiteColorTheme" />
+        <activity android:name=".converter.ConverterActivity" />
+        <activity android:name=".service.ServiceActivity"></activity>
+        <activity android:name=".onay.OnayActivity">
+
+        </activity>
+        <activity android:name=".telephone.BalanceAddActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

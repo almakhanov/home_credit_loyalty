@@ -28,4 +28,7 @@
 
     <color name="colorWhiteRed">#f78fa7</color>
 
+    <color name="colorBlue">#ec9500</color>
+    <color name="colorType">#efefef</color>
+
 </resources>

@@ -1,5 +1,6 @@
-package kz.batana.homecreditloyalty.autoPayment
+package kz.batana.homecreditloyalty.telephone
 
+import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.app.ActionBar
@@ -8,16 +9,17 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.View
-import kotlinx.android.synthetic.main.activity_auto_payment.*
+import android.view.animation.AnimationUtils
+import kotlinx.android.synthetic.main.activity_balance_add.*
 import kz.batana.homecreditloyalty.R
 
-class AutoPaymentActivity : AppCompatActivity() {
+class BalanceAddActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_auto_payment)
+        setContentView(R.layout.activity_balance_add)
         phoneNumber.addTextChangedListener(PhoneNumberFormattingTextWatcher())
-        phoneNumber.addTextChangedListener(object: TextWatcher{
+        phoneNumber.addTextChangedListener(object: TextWatcher {
             override fun afterTextChanged(s: Editable?) {
                 if (s!!.length>2){
                     Log.d("s1",s[1].toString())
@@ -70,9 +72,39 @@ class AutoPaymentActivity : AppCompatActivity() {
                 }
             }
         }
+        bonus.addTextChangedListener(object: TextWatcher{
+            override fun afterTextChanged(s: Editable?) {
+
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if (!s.isNullOrEmpty()){
+                    if (s!!.toString().toInt()>1000){
+                        bonus.startAnimation(AnimationUtils.loadAnimation(this@BalanceAddActivity,R.anim.shake))
+                        bonus.setTextColor(Color.RED)
+                        commit.setBackgroundResource(R.color.colorType)
+                        commit.isEnabled=false
+                    }
+                    else{
+                        if(s.toString().toInt()>0)
+                            bonus.setTextColor(Color.BLACK)
+                        commit.setBackgroundResource(R.color.colorPrimary)
+                        commit.isEnabled= true
+                    }
+                }
+                else{
+                }
+            }
+
+        })
 
 
     }
+
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return true
