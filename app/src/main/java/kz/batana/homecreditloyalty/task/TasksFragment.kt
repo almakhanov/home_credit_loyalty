@@ -6,7 +6,6 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import kotlinx.android.synthetic.main.tasks_fragment.*
 import kz.batana.homecreditloyalty.R
 import kz.batana.homecreditloyalty.entity.Task
@@ -61,14 +60,14 @@ class TasksFragment: Fragment(), CurrentTasksAdapter.OnItemClickListener {
     }
 
     private fun setTasks(taskList: ArrayList<Task>){
-        recyclerCurrentTasks?.layoutManager = LinearLayoutManager(activity, LinearLayout.HORIZONTAL, false)
+        recyclerCurrentTasks?.layoutManager = LinearLayoutManager(activity)
         currentTasksAdapter = CurrentTasksAdapter(taskList, this)
         recyclerCurrentTasks?.adapter = currentTasksAdapter
     }
 
 
     override fun onItemClicked(course: Task) {
-
+        
     }
 
 }
