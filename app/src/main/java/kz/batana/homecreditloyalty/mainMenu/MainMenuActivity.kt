@@ -19,6 +19,7 @@ import kz.batana.homecreditloyalty.R
 import kz.batana.homecreditloyalty.auth.LoginActivity
 import kz.batana.homecreditloyalty.report.ReportFragment
 import kz.batana.homecreditloyalty.task.TasksFragment
+import kz.batana.homecreditloyalty.tasks_tabs.TasksBaseFragment
 import org.koin.android.ext.android.inject
 
 
@@ -106,10 +107,10 @@ class MainMenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
                 toolbar.title = "Сообщить"
                 currentFragment = ReportFragment()
             }
-//            R.id.nav_clubs -> {
-//                toolbar.title = "Спортивные клубы"
-////                currentFragment = ClubsFragment()
-//            }
+            R.id.nav_tasks -> {
+                toolbar.title = "Задачи"
+                currentFragment = TasksBaseFragment()
+            }
 //            R.id.nav_history -> {
 //                toolbar.title = "История"
 ////                currentFragment = HistoryFragment()
