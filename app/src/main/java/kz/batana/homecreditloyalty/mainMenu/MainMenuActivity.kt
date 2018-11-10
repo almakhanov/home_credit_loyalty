@@ -15,6 +15,7 @@ import kotlinx.android.synthetic.main.activity_main_menu.*
 import kotlinx.android.synthetic.main.app_bar_main_menu.*
 import kz.batana.homecreditloyalty.R
 import kz.batana.homecreditloyalty.auth.LoginActivity
+import kz.batana.homecreditloyalty.report.ReportFragment
 import kz.batana.homecreditloyalty.task.TasksFragment
 
 
@@ -98,10 +99,10 @@ class MainMenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
                 toolbar.title = "Главная"
                 currentFragment = TasksFragment()
             }
-//            R.id.nav_store -> {
-//                toolbar.title = "Магазин"
-////                currentFragment = StoreFragment()
-//            }
+            R.id.nav_report -> {
+                toolbar.title = "Сообщить"
+                currentFragment = ReportFragment()
+            }
 //            R.id.nav_clubs -> {
 //                toolbar.title = "Спортивные клубы"
 ////                currentFragment = ClubsFragment()

@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".report.ReportFragment">
+
+    <TextView
+        android:id="@+id/text_view_top_title_report"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="Сообщите нам о вашей проблеме и зарабатывайте бонусы"
+        android:textAlignment="center"
+        android:textSize="20dp"
+        android:textColor="#444"
+        android:textStyle="bold"
+        android:padding="16dp"
+        android:background="@drawable/outline_list_fields_gray"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/layoutReportBugBox"
+        app:layout_constraintTop_toBottomOf="@id/text_view_top_title_report"
+        android:layout_width="match_parent"
+        android:padding="16dp"
+        android:background="@drawable/outline_list_fields_gray"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_bug"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/ic_bug_report_black_24dp"
+            android:tint="@color/colorIcons"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/text_view_report_bug"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Вы нашли баг в приложении?"
+            app:layout_constraintLeft_toRightOf="@id/iv_bug"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginLeft="8dp"
+            android:textSize="16dp"
+            />
+
+        <TextView
+            android:id="@+id/text_view_report_bug_bonus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#08a408"
+            android:text="+50"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginLeft="8dp"
+            android:textSize="16dp"
+            />
+
+
+    </android.support.constraint.ConstraintLayout>
+
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/layoutEvaluateBox"
+        app:layout_constraintTop_toBottomOf="@id/layoutReportBugBox"
+        android:layout_width="match_parent"
+        android:padding="16dp"
+        android:background="@drawable/outline_list_fields_gray"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_evaluate"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/ic_star_half_black_24dp"
+            android:tint="@color/colorIcons"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/text_view_evaluate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Оцените приложение"
+            app:layout_constraintLeft_toRightOf="@id/iv_evaluate"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginLeft="8dp"
+            android:textSize="16dp"
+            />
+
+        <TextView
+            android:id="@+id/text_view_evaluate_bonus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#08a408"
+            android:text="+40"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginLeft="8dp"
+            android:textSize="16dp"
+            />
+
+    </android.support.constraint.ConstraintLayout>
+
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/layoutRecommendBox"
+        app:layout_constraintTop_toBottomOf="@id/layoutEvaluateBox"
+        android:layout_width="match_parent"
+        android:padding="16dp"
+        android:background="@drawable/outline_list_fields_gray"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_Recommend"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/ic_loyalty_black_24dp"
+            android:tint="@color/colorIcons"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/text_view_Recommend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ваши рекомендации"
+            app:layout_constraintLeft_toRightOf="@id/iv_Recommend"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginLeft="8dp"
+            android:textSize="16dp"
+            />
+
+        <TextView
+            android:id="@+id/text_view_Recommend_bonus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#08a408"
+            android:text="+80"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginLeft="8dp"
+            android:textSize="16dp"
+            />
+
+    </android.support.constraint.ConstraintLayout>
+
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/layoutFeefbackBox"
+        app:layout_constraintTop_toBottomOf="@id/layoutRecommendBox"
+        android:layout_width="match_parent"
+        android:padding="16dp"
+        android:background="@drawable/outline_list_fields_gray"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_Feefback"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/ic_thumb_up_black_24dp"
+            android:tint="@color/colorIcons"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/text_view_Feefback"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Оставьте отзыв о приложении"
+            app:layout_constraintLeft_toRightOf="@id/iv_Feefback"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginLeft="8dp"
+            android:textSize="16dp"
+            />
+
+        <TextView
+            android:id="@+id/text_view_Feefback_bonus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#08a408"
+            android:text="+50"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginLeft="8dp"
+            android:textSize="16dp"
+            />
+
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/layoutQuestionBox"
+        app:layout_constraintTop_toBottomOf="@id/layoutFeefbackBox"
+        android:layout_width="match_parent"
+        android:padding="16dp"
+        android:background="@drawable/outline_list_fields_gray"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_Question"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/ic_help_outline_black_24dp"
+            android:tint="@color/colorIcons"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/text_view_Question"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Задайте вопрос"
+            app:layout_constraintLeft_toRightOf="@id/iv_Question"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginLeft="8dp"
+            android:textSize="16dp"
+            />
+
+        <TextView
+            android:id="@+id/text_view_Question_bonus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#08a408"
+            android:text="+10"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginLeft="8dp"
+            android:textSize="16dp"
+            />
+
+    </android.support.constraint.ConstraintLayout>
+</android.support.constraint.ConstraintLayout>

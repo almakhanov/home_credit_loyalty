@@ -1,7 +1,10 @@
 package kz.batana.homecreditloyalty
 
+import android.content.Context
+import android.content.SharedPreferences
 import kz.batana.homecreditloyalty.auth.authModule
 import kz.batana.homecreditloyalty.core.coreModule
+import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module.Module
 import org.koin.dsl.module.module
 
@@ -13,8 +16,14 @@ val appModules: List<Module>
     )
 
 val singletons = module {
+    single { createSharedPrefs(androidContext()) }
 //    Logger.msg("accepted",Constants.URL )
 //    single { createService<StoreService>(get(), Constants.URL) }
 //    single { createService<HistoryService>(get(), Constants.URL) }
 //    single { createService<ClubService>(get(), Constants.URL) }
+}
+
+
+internal fun createSharedPrefs(context: Context) : SharedPreferences {
+    return context.applicationContext.getSharedPreferences(Constants.PREFERENCE, Context.MODE_PRIVATE)
 }
