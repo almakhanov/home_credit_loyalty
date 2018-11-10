@@ -39,7 +39,7 @@ class TaskDetailActivity : AppCompatActivity() {
 
 
         goToTask.setOnClickListener{
-            when(task.expiredDate){
+            when(task.expiredDate!!.toLowerCase()){
                 "tel" -> {
 
                 }

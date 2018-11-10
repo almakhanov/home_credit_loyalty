@@ -1,6 +1,7 @@
 package kz.batana.homecreditloyalty.mainMenu
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v4.app.Fragment
@@ -13,18 +14,19 @@ import android.view.Menu
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_main_menu.*
 import kotlinx.android.synthetic.main.app_bar_main_menu.*
+import kz.batana.homecreditloyalty.Constants
 import kz.batana.homecreditloyalty.R
 import kz.batana.homecreditloyalty.auth.LoginActivity
 import kz.batana.homecreditloyalty.report.ReportFragment
 import kz.batana.homecreditloyalty.task.TasksFragment
-
-
-
+import org.koin.android.ext.android.inject
 
 
 class MainMenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     var currentFragment: Fragment? = null
     var fragmentManager: FragmentManager = supportFragmentManager
+
+    private val sharedPref: SharedPreferences by inject()
     //    val eventService:EventService by inject()
 //    companion object {
 //        var user:User?=null
@@ -33,6 +35,7 @@ class MainMenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_menu)
         setSupportActionBar(toolbar)
+
 //        var intent = intent
 //        user = intent.getSerializableExtra("user") as User
         toolbar.title = "Главная"
