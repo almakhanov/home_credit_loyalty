@@ -22,7 +22,7 @@ import org.koin.android.ext.android.inject
 
 
 @Suppress("DEPRECATION")
-class TasksFragment: Fragment(), CurrentTasksAdapter.OnItemClickListener {
+class MainFragment: Fragment(), CurrentTasksAdapter.OnItemClickListener {
 
     private lateinit var currentTasksAdapter: CurrentTasksAdapter
     private val service: TasksService by inject()

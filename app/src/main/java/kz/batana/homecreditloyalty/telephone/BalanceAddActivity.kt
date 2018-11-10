@@ -1,9 +1,9 @@
 package kz.batana.homecreditloyalty.telephone
 
 import android.graphics.Color
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.app.ActionBar
+import android.support.v7.app.AppCompatActivity
 import android.telephony.PhoneNumberFormattingTextWatcher
 import android.text.Editable
 import android.text.TextWatcher
@@ -53,7 +53,7 @@ class BalanceAddActivity : AppCompatActivity() {
         })
         setSupportActionBar(toolbar)
         val actionBar: ActionBar? = supportActionBar
-        actionBar?.title = "Авто платеж"
+        actionBar?.title = "Пополнение баланса"
         actionBar?.apply {
             this.setDisplayHomeAsUpEnabled(true)
             this.setDisplayShowHomeEnabled(true)
