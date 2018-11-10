@@ -1,12 +1,15 @@
 package kz.batana.homecreditloyalty.task
 
+import android.content.Intent
 import android.os.Bundle
+import android.os.Parcelable
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.tasks_fragment.*
+import kz.batana.homecreditloyalty.Constants
 import kz.batana.homecreditloyalty.R
 import kz.batana.homecreditloyalty.entity.Task
 
@@ -66,8 +69,10 @@ class TasksFragment: Fragment(), CurrentTasksAdapter.OnItemClickListener {
     }
 
 
-    override fun onItemClicked(course: Task) {
-        
+    override fun onItemClicked(task: Task) {
+        var tmpIntent = Intent(activity, TaskDetailActivity::class.java)
+        tmpIntent.putExtra(Constants.TASK, task as Parcelable)
+        startActivity(tmpIntent)
     }
 
 }

@@ -6,4 +6,5 @@ object Constants {
     const val BUG = "BUG"
     const val EVALUATE = "EVALUATE"
     const val FEEDBACK = "fedbac"
+    const val TASK = "task"
 }
