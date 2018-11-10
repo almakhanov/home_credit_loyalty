@@ -63,6 +63,9 @@ class MainFragment: Fragment(), CurrentTasksAdapter.OnItemClickListener {
             in 600..800 -> {
                 textPointsLevelValue.text = "Чемпион"
             }
+            else -> {
+                textPointsLevelValue.text = "Гроссмейстер"
+            }
         }
 
         service.getTasks().subscribeOn(Schedulers.io())

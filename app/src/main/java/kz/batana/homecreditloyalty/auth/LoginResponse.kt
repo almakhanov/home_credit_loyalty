@@ -10,5 +10,5 @@ import kz.batana.homecreditloyalty.entity.Customer
 
 data class LoginResponse(
         @SerializedName("code") val code: Int,
-        @SerializedName("user") val user: Customer
+        @SerializedName("user") val user: Customer?
 )

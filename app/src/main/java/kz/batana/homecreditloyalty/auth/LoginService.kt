@@ -5,7 +5,7 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface LoginService{
-    @GET("authorize")
+    @GET("login/")
     fun authorize(@Query("email") email:String,
                   @Query("password") password:String): Observable<LoginResponse>
 }

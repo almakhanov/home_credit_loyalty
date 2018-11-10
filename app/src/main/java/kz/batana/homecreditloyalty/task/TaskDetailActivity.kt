@@ -1,30 +1,35 @@
 package kz.batana.homecreditloyalty.task
 
 import android.content.DialogInterface
+import android.content.Intent
 import android.content.SharedPreferences
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.app.ActionBar
 import android.support.v7.app.AlertDialog
+import android.support.v7.app.AppCompatActivity
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.widget.EditText
 import android.widget.RatingBar
-import android.widget.TextView
 import android.widget.Toast
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_task_detail.*
 import kotlinx.android.synthetic.main.fragment_report.*
 import kz.batana.homecreditloyalty.Constants
 import kz.batana.homecreditloyalty.R
 import kz.batana.homecreditloyalty.core.util.Logger
 import kz.batana.homecreditloyalty.entity.Task
+import kz.batana.homecreditloyalty.mainMenu.MainMenuActivity
+import kz.batana.homecreditloyalty.tasks_tabs.TasksService
 import org.koin.android.ext.android.inject
 
 class TaskDetailActivity : AppCompatActivity() {
 
     private val sharedPref: SharedPreferences by inject()
     lateinit var task: Task
+    private val taskService: TasksService by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,8 +42,9 @@ class TaskDetailActivity : AppCompatActivity() {
         detailTaskVdateValue.text = task.date
         detailTaskVbonusValue.text = task.bonus.toString()
 
-
+        Logger.msg("accepted==", task.expiredDate!!.toLowerCase())
         goToTask.setOnClickListener{
+            Logger.msg("accepted", task.expiredDate!!.toLowerCase())
             when(task.expiredDate!!.toLowerCase()){
                 "tel" -> {
 
@@ -96,7 +102,16 @@ class TaskDetailActivity : AppCompatActivity() {
         val dialogClickListener = DialogInterface.OnClickListener{ _, which ->
             when(which){
                 DialogInterface.BUTTON_POSITIVE -> {
-                    //TODO
+                    taskService.addPoint(MainMenuActivity.user!!.id, task.id)
+                            .subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe({
+                                MainMenuActivity.user = it
+                                startActivity(Intent(this, MainMenuActivity::class.java))
+                            },{
+
+                            })
+
                     toast("Спасибо что помогаете нам!")
                 }
                 DialogInterface.BUTTON_NEUTRAL -> {

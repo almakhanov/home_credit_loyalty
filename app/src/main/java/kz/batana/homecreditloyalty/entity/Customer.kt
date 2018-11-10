@@ -5,6 +5,7 @@ import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 
 data class Customer (
+        @SerializedName("id") var id: Int,
         @SerializedName("name") var name : String,
         @SerializedName("password") var password: String,
         @SerializedName("email") var email: String,
@@ -14,8 +15,9 @@ data class Customer (
         @SerializedName("completed_tasks") var completed_tasks: Int,
         @SerializedName("rank") var rank: String,
         @SerializedName("levelup_points") var levelup_points: Int
-): Parcelable {
+) : Parcelable {
     constructor(parcel: Parcel) : this(
+            parcel.readInt(),
             parcel.readString(),
             parcel.readString(),
             parcel.readString(),
@@ -28,6 +30,7 @@ data class Customer (
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeInt(id)
         parcel.writeString(name)
         parcel.writeString(password)
         parcel.writeString(email)

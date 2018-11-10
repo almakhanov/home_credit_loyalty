@@ -39,7 +39,7 @@ class LoginActivity : AppCompatActivity(),LoginContract.LoginView {
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe {
                         if (it.code ==0){
-                            val user: Customer = it.user
+                            val user: Customer = it.user!!
                             val intent = Intent(this, MainMenuActivity::class.java)
                             intent.putExtra("user",user as Parcelable)
                             startActivity(intent)

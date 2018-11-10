@@ -34,14 +34,21 @@ class MainMenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
     private val sharedPref: SharedPreferences by inject()
     companion object {
         var user:Customer?=null
+
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_menu)
         setSupportActionBar(toolbar)
 
 //        var intent = intent
-        user = intent.getParcelableExtra("user") as Customer
+        if(MainMenuActivity.user == null){
+            user = intent.getParcelableExtra("user") as Customer
+        }else{
+            user = MainMenuActivity.user
+        }
+
         toolbar.title = "Главная"
 
         var mainFragment = MainFragment()
@@ -50,6 +57,7 @@ class MainMenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
         headerView.textViewUserName.text = user?.name
         headerView.bonusTextView.text = user?.current_points.toString()
         headerView.textViewUserEmail.text = user?.email
+
         fragmentManager.beginTransaction().add(R.id.content, mainFragment).commit()
         val toggle = ActionBarDrawerToggle(
                 this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close
