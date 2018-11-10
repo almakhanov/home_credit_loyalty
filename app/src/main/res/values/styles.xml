@@ -69,11 +69,11 @@
     </style>
 
     <style name="MyToolbarStyle" parent="ThemeOverlay.AppCompat.ActionBar">
-        <item name="android:textColorSecondary">@color/colorIcons</item>
+        <item name="android:textColorSecondary">@color/colorWhite</item>
     </style>
 
     <style name="ToolbarColored" parent="AppTheme">
-        <item name="android:textColorSecondary">@color/colorIcons</item>
+        <item name="android:textColorSecondary">@color/colorWhite</item>
     </style>
 
 </resources>
