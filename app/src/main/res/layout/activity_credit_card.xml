@@ -9,13 +9,11 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        app:titleTextColor="@color/colorWhite"
         android:background="?attr/colorPrimary"
-        app:layout_scrollFlags="scroll|enterAlways"
+        app:subtitleTextColor="@color/colorSecondaryText"
+        app:titleTextColor="#FFFF"
         app:popupTheme="@style/AppTheme.PopupOverlay"
-        app:title="@string/app_name">
-
-    </android.support.v7.widget.Toolbar>
+        android:theme="@style/ToolbarColored"/>
 
     <com.braintreepayments.cardform.view.CardForm
         android:id="@+id/cardForm"

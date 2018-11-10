@@ -19,7 +19,7 @@
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
             app:subtitleTextColor="@color/colorSecondaryText"
-            app:titleTextColor="#333"
+            app:titleTextColor="#FFFF"
             app:popupTheme="@style/AppTheme.PopupOverlay"
             android:theme="@style/ToolbarColored"/>
 
