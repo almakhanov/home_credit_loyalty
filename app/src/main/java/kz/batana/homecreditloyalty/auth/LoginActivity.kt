@@ -24,6 +24,7 @@ class LoginActivity : AppCompatActivity(),LoginContract.LoginView {
 
 
         loginSignInButton.setOnClickListener { _ ->
+
             progressBar.visibility= View.VISIBLE
             loginSignInButton.text = ""
 //            service.authorize(loginEmailEditText.text.toString(),loginPasswordEditText.text.toString())
