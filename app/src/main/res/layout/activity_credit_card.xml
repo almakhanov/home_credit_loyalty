@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".creditCardAdd.CreditCardActivity">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:titleTextColor="@color/colorWhite"
+        android:background="?attr/colorPrimary"
+        app:layout_scrollFlags="scroll|enterAlways"
+        app:popupTheme="@style/AppTheme.PopupOverlay"
+        app:title="@string/app_name">
+
+    </android.support.v7.widget.Toolbar>
+
+    <com.braintreepayments.cardform.view.CardForm
+        android:id="@+id/cardForm"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+
+        android:layout_marginTop="100dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+    <Button
+        android:id="@+id/addCard"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:enabled="false"
+        android:textColor="@color/colorWhite"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="Добавить карту"/>
+
+
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/info"
+        app:layout_constraintBottom_toTopOf="@id/addCard"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/checkbox"
+        android:layout_marginBottom="60dp"
+        android:layout_marginStart="16dp"
+        app:layout_goneMarginEnd="10dp"
+        android:textStyle="bold"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="45dp"
+        android:text="@string/terms"/>
+
+    <CheckBox
+        android:id="@+id/checkbox"
+        android:checked="false"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/info"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="@id/info"/>
+</android.support.constraint.ConstraintLayout>

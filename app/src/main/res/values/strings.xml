@@ -36,4 +36,6 @@
     <string name="default_notification_channel_name" translatable="true">Weather</string>
     <string name="msg_subscribe_failed">Failed to subscribe to weather topic</string>
     <string name="fcm_message">FCM Message</string>
+    <string name="phone_number" >+X (XXX) XXX-XXXX)</string>
+    <string name="terms">By creating an account, you agree to the Home credit Bank <u>Terms of Service and Privacy Policy</u></string>
 </resources>
