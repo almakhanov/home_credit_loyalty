@@ -47,14 +47,14 @@
         <activity
             android:name=".creditCardAdd.CreditCardActivity"
             android:theme="@style/MyWhiteColorTheme">
+
+        </activity>
+        <activity android:name=".converter.ConverterActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity android:name=".converter.ConverterActivity">
-
         </activity>
     </application>
 
