@@ -51,7 +51,7 @@ class MainMenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
 
 //        var intent = intent
         if(MainMenuActivity.user == null){
-            user = intent.getParcelableExtra("user") as Customer
+            user = intent.getSerializableExtra("user") as Customer
         }else{
             user = MainMenuActivity.user
         }

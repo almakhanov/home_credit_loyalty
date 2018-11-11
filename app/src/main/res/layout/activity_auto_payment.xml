@@ -146,6 +146,7 @@
         android:layout_marginTop="45dp"
         android:text="«Автоплатеж» автоматически пополнит счет мобильного телефона при достижении установленного минимального баланса."/>
     <Button
+        android:id="@+id/createPayment"
         app:layout_constraintBottom_toBottomOf="parent"
         android:text="Создать"
         android:textColor="@color/pf_white"

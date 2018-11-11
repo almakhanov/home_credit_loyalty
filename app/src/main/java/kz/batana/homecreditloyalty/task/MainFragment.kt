@@ -68,7 +68,7 @@ class MainFragment: Fragment(), CurrentTasksAdapter.OnItemClickListener {
             }
         }
 
-        service.getTasks().subscribeOn(Schedulers.io())
+        service.getTasksById(MainMenuActivity.user?.id!!).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe {
                     App.showProgress(activity!!)

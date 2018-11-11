@@ -19,6 +19,7 @@ import kotlinx.android.synthetic.main.activity_task_detail.*
 import kotlinx.android.synthetic.main.fragment_report.*
 import kz.batana.homecreditloyalty.Constants
 import kz.batana.homecreditloyalty.R
+import kz.batana.homecreditloyalty.autoPayment.AutoPaymentActivity
 import kz.batana.homecreditloyalty.core.util.Logger
 import kz.batana.homecreditloyalty.entity.Task
 import kz.batana.homecreditloyalty.mainMenu.MainMenuActivity
@@ -47,7 +48,8 @@ class TaskDetailActivity : AppCompatActivity() {
             Logger.msg("accepted", task.expiredDate!!.toLowerCase())
             when(task.expiredDate!!.toLowerCase()){
                 "tel" -> {
-
+                    startActivity(Intent(this,AutoPaymentActivity::class.java))
+                    finish()
                 }
                 "card" -> {
 
