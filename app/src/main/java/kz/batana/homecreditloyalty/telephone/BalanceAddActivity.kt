@@ -53,7 +53,7 @@ class BalanceAddActivity : AppCompatActivity() {
         })
         setSupportActionBar(toolbar)
         val actionBar: ActionBar? = supportActionBar
-        actionBar?.title = "Авто платеж"
+        actionBar?.title = "Пополнение баланса"
         actionBar?.apply {
             this.setDisplayHomeAsUpEnabled(true)
             this.setDisplayShowHomeEnabled(true)

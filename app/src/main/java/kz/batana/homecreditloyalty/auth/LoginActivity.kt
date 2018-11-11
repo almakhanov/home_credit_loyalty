@@ -1,10 +1,14 @@
 package kz.batana.homecreditloyalty.auth
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.View
+import com.google.firebase.iid.FirebaseInstanceId
 import kotlinx.android.synthetic.main.activity_login.*
 import kz.batana.homecreditloyalty.R
+import kz.batana.homecreditloyalty.mainMenu.MainMenuActivity
 import org.koin.android.ext.android.inject
 
 class LoginActivity : AppCompatActivity(),LoginContract.LoginView {
@@ -14,6 +18,15 @@ class LoginActivity : AppCompatActivity(),LoginContract.LoginView {
         setContentView(R.layout.activity_login)
         presenter.attachView(this)
         loginSignInButton.setOnClickListener { _ ->
+            FirebaseInstanceId.getInstance().instanceId
+                    .addOnCompleteListener {
+                        if (it.isSuccessful){
+                            Log.d("token",it.result?.token)
+                            val intent = Intent(this,MainMenuActivity::class.java)
+                            startActivity(intent)
+
+                        }
+                    }
             progressBar.visibility= View.VISIBLE
             loginSignInButton.text = ""
 //            service.authorize(loginEmailEditText.text.toString(),loginPasswordEditText.text.toString())

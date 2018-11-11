@@ -29,7 +29,13 @@
         <activity android:name=".MainActivity" />
         <activity
             android:name=".auth.LoginActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".registration.RegistrationActivity" />
         <activity
             android:name=".mainMenu.MainMenuActivity"
@@ -37,22 +43,34 @@
             android:theme="@style/MyWhiteColorTheme" />
         <activity
             android:name=".autoPayment.AutoPaymentActivity"
-            android:theme="@style/MyWhiteColorTheme" />
+            android:theme="@style/MyWhiteColorTheme" >
+
+        </activity>
         <activity
             android:name=".creditCardAdd.CreditCardActivity"
-            android:theme="@style/MyWhiteColorTheme" />
-        <activity android:name=".converter.ConverterActivity" />
-        <activity android:name=".service.ServiceActivity"></activity>
+            android:theme="@style/MyWhiteColorTheme" >
+
+        </activity>
+        <activity android:name=".converter.ConverterActivity" >
+
+        </activity>
+        <activity android:name=".service.ServiceActivity">
+
+        </activity>
         <activity android:name=".onay.OnayActivity">
 
         </activity>
         <activity android:name=".telephone.BalanceAddActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
+
+        <service android:name=".MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+
     </application>
 
 </manifest>
