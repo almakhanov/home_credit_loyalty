@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".task.TaskDetailActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/app_bar_layout_task_details"
+        style="@style/AppBarLayoutDefault">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar_waybill_task_details"
+            style="@style/ToolbarDefault">
+
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+       app:layout_constraintBottom_toTopOf="@id/goToTask"
+        app:layout_constraintTop_toBottomOf="@id/app_bar_layout_task_details">
+
+
+        <android.support.constraint.ConstraintLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/layout_deatil_item1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                android:padding="16dp"
+                android:background="@drawable/outline_list_fields_gray">
+
+                <ImageView
+                    android:id="@+id/iv_deailts_title"
+                    android:layout_width="wrap_content"
+                    android:tint="@color/colorIcons"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_work_black_24dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:layout_marginLeft="16dp"
+                    android:id="@+id/detailTaskVTitleValue"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:textColor="#444"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Сделайте привязку карты"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintLeft_toRightOf="@id/iv_deailts_title"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/layout_deatil_item2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                app:layout_constraintTop_toBottomOf="@id/layout_deatil_item1"
+                android:background="@drawable/outline_list_fields_gray">
+
+                    <ImageView
+                        android:id="@+id/iv_deailts_desc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:tint="@color/colorIcons"
+                        android:src="@drawable/ic_description_black_24dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:layout_marginLeft="16dp"
+                        android:id="@+id/detailTaskVdescValue"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintRight_toRightOf="parent"
+                        android:text="ДЛя эалвал ыаощвоаыво ащвыоа щываоыщв оаыщвоащыво ащвыоавощвоащв ощоыващывощы воащвыоащвыощыв оащвыоащвыоа выоа щвыоащыов"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toRightOf="@id/iv_deailts_desc"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </android.support.constraint.ConstraintLayout>
+
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/layout_deatil_item3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                app:layout_constraintTop_toBottomOf="@id/layout_deatil_item2"
+                android:background="@drawable/outline_list_fields_gray">
+
+                <ImageView
+                    android:id="@+id/iv_deailts_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:tint="@color/colorIcons"
+                    android:src="@drawable/ic_date_range_black_24dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:layout_marginLeft="16dp"
+                    android:id="@+id/detailTaskVdateValue"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintRight_toRightOf="parent"
+                    android:text="12-05-2018"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toRightOf="@id/iv_deailts_date"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </android.support.constraint.ConstraintLayout>
+
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/layout_deatil_item4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                app:layout_constraintTop_toBottomOf="@id/layout_deatil_item3"
+                android:background="@drawable/outline_list_fields_gray">
+
+                <ImageView
+                    android:id="@+id/iv_deailts_bonus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:tint="@color/colorIcons"
+                    android:src="@drawable/ic_monetization_on_black_24dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:layout_marginLeft="16dp"
+                    android:id="@+id/detailTaskVbonusValue"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintRight_toRightOf="parent"
+                    android:text="+50"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toRightOf="@id/iv_deailts_bonus"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </android.support.constraint.ConstraintLayout>
+
+        </android.support.constraint.ConstraintLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/goToTask"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@color/colorIcons"
+        android:textColor="@color/colorWhite"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="Перейти к задаче"/>
+
+
+
+
+</android.support.constraint.ConstraintLayout>

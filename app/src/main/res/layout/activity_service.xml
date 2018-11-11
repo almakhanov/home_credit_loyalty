@@ -5,33 +5,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".service.ServiceActivity">
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        app:subtitleTextColor="@color/colorSecondaryText"
-        app:titleTextColor="#FFFF"
-        android:elevation="8dp"
-        app:popupTheme="@style/AppTheme.PopupOverlay"
-        android:theme="@style/ToolbarColored"/>
+
 
     <android.support.constraint.ConstraintLayout
     android:id="@+id/firstService"
     android:layout_width="match_parent"
     android:layout_height="64dp"
-    app:layout_constraintTop_toBottomOf="@id/toolbar"
+    app:layout_constraintTop_toTopOf="parent"
     android:background="@drawable/underline_border"
     >
 
     <ImageView
         android:id="@+id/iconService"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="16dp"
+        android:tint="@color/colorIcons"
         android:src="@drawable/ic_phone_iphone_black_24dp"/>
 
     <TextView
@@ -63,12 +55,13 @@
 
         <ImageView
             android:id="@+id/secondIcon"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="16dp"
+            android:tint="@color/colorIcons"
             android:src="@drawable/ic_loop_red_24dp"/>
 
         <TextView
@@ -100,12 +93,13 @@
 
         <ImageView
             android:id="@+id/thirdIcon"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="16dp"
+            android:tint="@color/colorIcons"
             android:src="@drawable/ic_directions_bus_black_24dp"/>
 
         <TextView
