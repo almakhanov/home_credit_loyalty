@@ -21,14 +21,12 @@ import kz.batana.homecreditloyalty.autoPayment.AutoPaymentActivity
 import kz.batana.homecreditloyalty.core.util.Logger
 import kz.batana.homecreditloyalty.entity.Task
 import kz.batana.homecreditloyalty.mainMenu.MainMenuActivity
-import kz.batana.homecreditloyalty.tasks_tabs.TasksService
 import org.koin.android.ext.android.inject
 
 class TaskDetailActivity : AppCompatActivity() {
 
     private val sharedPref: SharedPreferences by inject()
     lateinit var task: Task
-    private val taskService: TasksService by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

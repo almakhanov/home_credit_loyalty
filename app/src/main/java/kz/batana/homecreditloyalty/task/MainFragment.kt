@@ -9,24 +9,31 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.tasks_fragment.*
 import kz.batana.homecreditloyalty.App
 import kz.batana.homecreditloyalty.Constants
 import kz.batana.homecreditloyalty.R
-import kz.batana.homecreditloyalty.core.util.Logger
 import kz.batana.homecreditloyalty.entity.Task
 import kz.batana.homecreditloyalty.mainMenu.MainMenuActivity
-import kz.batana.homecreditloyalty.tasks_tabs.TasksService
 import org.koin.android.ext.android.inject
 
 
 @Suppress("DEPRECATION")
-class MainFragment: Fragment(), CurrentTasksAdapter.OnItemClickListener {
+class MainFragment() : Fragment(), CurrentTasksAdapter.OnItemClickListener, TaskContract.TaskView {
+    override fun showTasks(tasks: ArrayList<Task>) {
+        setTasks(tasks)
+    }
 
+    override fun showProgress() {
+        App.showProgress(activity!!)
+    }
+
+    override fun hideProgress() {
+        App.hideProgress()
+    }
+
+    override val presenter: TaskContract.TaskPresenter by inject()
     private lateinit var currentTasksAdapter: CurrentTasksAdapter
-    private val service: TasksService by inject()
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.tasks_fragment,container,false)
     }
@@ -34,6 +41,7 @@ class MainFragment: Fragment(), CurrentTasksAdapter.OnItemClickListener {
     @SuppressLint("CheckResult", "SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        presenter.attachView(this)
         App.showProgress(activity!!)
 
         progressBarLevel.visibility = View.VISIBLE
@@ -67,30 +75,6 @@ class MainFragment: Fragment(), CurrentTasksAdapter.OnItemClickListener {
                 textPointsLevelValue.text = "Гроссмейстер"
             }
         }
-
-        service.getTasksById(MainMenuActivity.user?.id!!).subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .doOnSubscribe {
-                    App.showProgress(activity!!)
-                }
-                .doFinally{
-                    App.hideProgress()
-                }
-                .subscribe(
-                        {
-                            val list = it as ArrayList<Task>
-                            val filter = ArrayList<Task>()
-                            for(i in list){
-                                if(i.status.toLowerCase() == "onprogress"){
-                                    filter.add(i)
-                                }
-                            }
-                            setTasks(filter)
-                        },
-                        {
-                            Logger.msg("accepted", it.message)
-                        })
-
 
 
     }

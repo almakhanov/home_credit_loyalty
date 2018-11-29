@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="Gradle: com.lamudi.phonefield:phone-field-0.1.3">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/phone-field-0.1.3.aar/8fd13567f28ef5d53ed45c797809d869/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/phone-field-0.1.3.aar/8fd13567f28ef5d53ed45c797809d869/jars/classes.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/phone-field-0.1.3.aar/10c5e41f65c81d2feb6b8061d6cff496/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/phone-field-0.1.3.aar/10c5e41f65c81d2feb6b8061d6cff496/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
