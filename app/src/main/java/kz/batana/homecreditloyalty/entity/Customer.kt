@@ -1,10 +1,13 @@
 package kz.batana.homecreditloyalty.entity
 
+import android.arch.persistence.room.Entity
+import android.arch.persistence.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
-
+@Entity(tableName = "Customer")
 data class Customer (
+        @PrimaryKey
         @SerializedName("id") var id: Int,
         @SerializedName("name") var name : String,
         @SerializedName("password") var password: String,

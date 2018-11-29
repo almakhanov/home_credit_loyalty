@@ -34,7 +34,7 @@ class TaskDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_task_detail)
 
-        task = intent.getParcelableExtra(Constants.TASK) as Task
+        task = intent.getSerializableExtra(Constants.TASK) as Task
 
         detailTaskVTitleValue.text = task.title
         detailTaskVdescValue.text = task.description
