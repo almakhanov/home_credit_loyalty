@@ -4,7 +4,8 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="4dp"
-    android:background="@color/colorWhite"
+    android:elevation="4dp"
+    android:background="@drawable/outline_list_fields_gray"
     android:layout_margin="4dp">
 
     <TextView

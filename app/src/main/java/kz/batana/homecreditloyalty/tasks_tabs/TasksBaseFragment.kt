@@ -13,7 +13,6 @@ import kz.batana.homecreditloyalty.R
 class TasksBaseFragment : Fragment() {
 
     private lateinit var todoTasksFragment: TodoTasksFragment
-    private lateinit var doingTasksFragment: DoingTasksFragment
     private lateinit var doneTasksFragment: DoneTasksFragment
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -27,11 +26,9 @@ class TasksBaseFragment : Fragment() {
         //View pager fragments
         val adapter = TasksFragmentPagerAdapter(childFragmentManager)
         todoTasksFragment = TodoTasksFragment()
-        doingTasksFragment = DoingTasksFragment()
         doneTasksFragment = DoneTasksFragment()
 
         adapter.addFragment(todoTasksFragment, "Новые")
-        adapter.addFragment(doingTasksFragment, "В прогресе")
         adapter.addFragment(doneTasksFragment, "Сделано")
         view_pager_home.adapter = adapter
         tab_layout_home.setupWithViewPager(view_pager_home)

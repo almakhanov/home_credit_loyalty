@@ -1,23 +1,27 @@
 package kz.batana.homecreditloyalty.converter
 
+import android.content.Intent
 import android.graphics.Color
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v4.content.ContextCompat
 import android.support.v7.app.ActionBar
+import android.support.v7.app.AppCompatActivity
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.animation.AnimationUtils
 import android.widget.TextView
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_converter.*
 import kz.batana.homecreditloyalty.R
+import kz.batana.homecreditloyalty.mainMenu.MainMenuActivity
+import kz.batana.homecreditloyalty.tasks_tabs.TasksService
+import org.koin.android.ext.android.inject
 
 class ConverterActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_converter)
-        setSupportActionBar(toolbar)
+        setSupportActionBar(toolbarTELE)
         val actionBar: ActionBar? = supportActionBar
         actionBar?.title = "Конвертация бонусов"
         actionBar?.apply {
@@ -27,7 +31,7 @@ class ConverterActivity : AppCompatActivity() {
             this.setDisplayShowTitleEnabled(true)
         }
 
-        toolbar.setOnMenuItemClickListener {
+        toolbarTELE.setOnMenuItemClickListener {
             when(it.itemId){
                 R.id.done ->{
 
@@ -37,6 +41,16 @@ class ConverterActivity : AppCompatActivity() {
                     true
                 }
             }
+        }
+
+        perevo_balance.text = MainMenuActivity.user!!.current_points.toString()
+
+        coomitBtn.setOnClickListener{
+            Toast.makeText(this, "Спасибо за платеж!", Toast.LENGTH_SHORT).show()
+            Thread.sleep(500)
+            MainMenuActivity.user!!.current_points -= fromBonus.text.toString().toInt()
+            startActivity(Intent(this, MainMenuActivity::class.java))
+            finish()
         }
 
         fromBonus.addTextChangedListener(object: TextWatcher{
@@ -50,7 +64,7 @@ class ConverterActivity : AppCompatActivity() {
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 if (!s.isNullOrEmpty()){
-                    if (s!!.toString().toInt()>1000){
+                    if (s!!.toString().toInt()>MainMenuActivity.user!!.current_points){
                         fromBonus.startAnimation(AnimationUtils.loadAnimation(this@ConverterActivity,R.anim.shake))
                         fromBonus.setTextColor(Color.RED)
                         toMoney.setText("Недостаточно бонусов", TextView.BufferType.EDITABLE)
@@ -68,7 +82,11 @@ class ConverterActivity : AppCompatActivity() {
             }
 
         })
+
+
     }
+
+    private val serice: TasksService by inject()
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return true

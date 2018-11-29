@@ -133,6 +133,7 @@
         app:layout_constraintBottom_toBottomOf="@id/iconBalance"
         />
     <TextView
+        android:id="@+id/onay_balance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toEndOf="@id/ostatokTitle"
@@ -162,7 +163,7 @@
         />
     <Button
         android:layout_width="match_parent"
-        android:id="@+id/commit"
+        android:id="@+id/commitOnay"
         android:layout_height="56dp"
         android:text="Пополнить"
         android:textColor="@color/pf_white"

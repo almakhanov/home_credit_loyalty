@@ -22,6 +22,24 @@ class HistoryFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
+
+        var arraylist = ArrayList<History>()
+        arraylist.apply {
+            add(History("Автоплатеж", "11-11-2018", "Аскар Жанбатыр", "Баланс", 120))
+            add(History("Конвертация", "11-11-2018", "Аскар Жанбатыр", "Аскар Жанбатыр", 200))
+            add(History("Баланс", "11-11-2018", "Аскар Жанбатыр", "Баланс", 20))
+            add(History("Онай", "11-11-2018", "Аскар Жанбатыр", "Онай счет", 100))
+            add(History("Онай", "11-11-2018", "Аскар Жанбатыр", "Онай счет", 40))
+            add(History("Оставить отзыв", "11-11-2018", "Задание", "Аскар Жанбатыр", 50))
+            add(History("Сообщить о баге", "11-11-2018", "Задание", "Аскар Жанбатыр", 50))
+            add(History("Оценить приложение", "11-11-2018", "Задание", "Аскар Жанбатыр", 30))
+
+        }
+
+        setRecycler(arraylist)
+
     }
 
 

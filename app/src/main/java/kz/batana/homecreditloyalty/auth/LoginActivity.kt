@@ -5,7 +5,9 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.Parcelable
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.View
+import com.google.firebase.iid.FirebaseInstanceId
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_login.*
@@ -13,6 +15,7 @@ import kz.batana.homecreditloyalty.Constants
 import kz.batana.homecreditloyalty.R
 import kz.batana.homecreditloyalty.entity.Customer
 import kz.batana.homecreditloyalty.mainMenu.MainMenuActivity
+import kz.batana.homecreditloyalty.registration.RegistrationActivity
 import org.koin.android.ext.android.inject
 
 class LoginActivity : AppCompatActivity(),LoginContract.LoginView {
@@ -29,7 +32,16 @@ class LoginActivity : AppCompatActivity(),LoginContract.LoginView {
             //TODO
         }
 
+        loginRegisterButton.setOnClickListener{
+            startActivity(Intent(this, RegistrationActivity::class.java))
+        }
 
+        FirebaseInstanceId.getInstance().instanceId
+                .addOnCompleteListener {
+                    if (it.isSuccessful) {
+                        Log.d("token accepted", it.result?.token)
+                    }
+                }
         loginSignInButton.setOnClickListener { _ ->
 
             progressBar.visibility= View.VISIBLE

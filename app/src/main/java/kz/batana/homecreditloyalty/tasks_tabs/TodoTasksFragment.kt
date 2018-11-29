@@ -12,11 +12,8 @@ import android.view.View
 import android.view.ViewGroup
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.fragment_doing_tasks.*
 import kotlinx.android.synthetic.main.fragment_todo_tasks.*
-import kz.batana.homecreditloyalty.App
 import kz.batana.homecreditloyalty.Constants
-
 import kz.batana.homecreditloyalty.R
 import kz.batana.homecreditloyalty.core.util.Logger
 import kz.batana.homecreditloyalty.entity.Task
@@ -28,7 +25,7 @@ import org.koin.android.ext.android.inject
 class TodoTasksFragment : Fragment(), CurrentTasksAdapter.OnItemClickListener {
 
     private val service: TasksService by inject()
-
+    private lateinit var currentTasksAdapter: CurrentTasksAdapter
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -40,20 +37,14 @@ class TodoTasksFragment : Fragment(), CurrentTasksAdapter.OnItemClickListener {
         super.onViewCreated(view, savedInstanceState)
         service.getTasks().subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnSubscribe {
-                    App.showProgress(activity!!)
-                }
-                .doFinally{
-                    App.hideProgress()
-                }
                 .subscribe(
                         {
-                            val list = it as ArrayList<Task>
+                            Logger.msg("accepted", it.toString())
                             val filter = ArrayList<Task>()
-                            for(i in list){
-                                if(i.status.toLowerCase() == "new"){
-                                    filter.add(i)
-                                }
+                            var cnt =0
+                            for(i in it as ArrayList<Task>){
+                                if(cnt > 3)filter.add(i)
+                                cnt++
                             }
                             setRecycler(filter)
                         },
@@ -63,8 +54,9 @@ class TodoTasksFragment : Fragment(), CurrentTasksAdapter.OnItemClickListener {
     }
 
     private fun setRecycler(list: ArrayList<Task>){
-        recycler_todo.layoutManager = LinearLayoutManager(context)
-        recycler_todo.adapter = CurrentTasksAdapter(list, this)
+        recycler_todo?.layoutManager = LinearLayoutManager(activity)
+        currentTasksAdapter = CurrentTasksAdapter(list, this)
+        recycler_todo?.adapter = currentTasksAdapter
     }
 
     override fun onItemClicked(course: Task) {

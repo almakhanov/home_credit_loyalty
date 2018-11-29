@@ -2,6 +2,7 @@ package kz.batana.homecreditloyalty.report
 
 
 import android.content.DialogInterface
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -19,6 +20,7 @@ import kz.batana.homecreditloyalty.Constants
 
 import kz.batana.homecreditloyalty.R
 import kz.batana.homecreditloyalty.core.util.Logger
+import kz.batana.homecreditloyalty.mainMenu.MainMenuActivity
 import org.koin.android.ext.android.inject
 
 class ReportFragment : Fragment() {
@@ -64,9 +66,6 @@ class ReportFragment : Fragment() {
         }
     }
 
-
-
-
     private fun openBugDialog(){
         val dialog: AlertDialog
         val viewDialog: View = layoutInflater.inflate(R.layout.custom_bug_dialog_layout, null)
@@ -77,8 +76,15 @@ class ReportFragment : Fragment() {
         val dialogClickListener = DialogInterface.OnClickListener{ _, which ->
             when(which){
                 DialogInterface.BUTTON_POSITIVE -> {
-                    //TODO
                     toast("Спасибо что помогаете нам!")
+                    Thread.sleep(500)
+                    MainMenuActivity.user!!.current_points += 50
+                    MainMenuActivity.user!!.levelup_points += 50
+                    MainMenuActivity.user!!.completed_tasks += 1
+                    startActivity(Intent(activity, MainMenuActivity::class.java))
+
+
+
                 }
                 DialogInterface.BUTTON_NEUTRAL -> {
                 }
@@ -121,6 +127,12 @@ class ReportFragment : Fragment() {
                 DialogInterface.BUTTON_POSITIVE -> {
                     Logger.msg("accepted", dialogEditText.rating)
                     toast("Спасибо за ваш отзыв")
+                    Thread.sleep(500)
+                    MainMenuActivity.user!!.current_points += 50
+                    MainMenuActivity.user!!.levelup_points += 50
+                    MainMenuActivity.user!!.completed_tasks += 1
+                    startActivity(Intent(activity, MainMenuActivity::class.java))
+
                     layoutEvaluateBox.visibility  = View.GONE
                     sharedPref.edit()
                             .putInt(Constants.EVALUATE, 1)
@@ -153,8 +165,13 @@ class ReportFragment : Fragment() {
         val dialogClickListener = DialogInterface.OnClickListener{ _, which ->
             when(which){
                 DialogInterface.BUTTON_POSITIVE -> {
-                    //TODO
                     toast("Спасибо что помогаете нам!")
+                    Thread.sleep(500)
+                    MainMenuActivity.user!!.current_points += 50
+                    MainMenuActivity.user!!.levelup_points += 50
+                    MainMenuActivity.user!!.completed_tasks += 1
+                    startActivity(Intent(activity, MainMenuActivity::class.java))
+
                 }
                 DialogInterface.BUTTON_NEUTRAL -> {
                 }
@@ -196,8 +213,12 @@ class ReportFragment : Fragment() {
         val dialogClickListener = DialogInterface.OnClickListener{ _, which ->
             when(which){
                 DialogInterface.BUTTON_POSITIVE -> {
-                    //TODO
                     toast("Спасибо за ваш отзыв!")
+                    Thread.sleep(500)
+                    MainMenuActivity.user!!.current_points += 50
+                    MainMenuActivity.user!!.levelup_points += 50
+                    MainMenuActivity.user!!.completed_tasks += 1
+                    startActivity(Intent(activity, MainMenuActivity::class.java))
                     layoutFeefbackBox.visibility  = View.GONE
                     sharedPref.edit()
                             .putInt(Constants.FEEDBACK, 1)
@@ -244,8 +265,12 @@ class ReportFragment : Fragment() {
         val dialogClickListener = DialogInterface.OnClickListener{ _, which ->
             when(which){
                 DialogInterface.BUTTON_POSITIVE -> {
-                    //TODO
                     toast("Спасибо, скоро ответим!")
+                    Thread.sleep(500)
+                    MainMenuActivity.user!!.current_points += 50
+                    MainMenuActivity.user!!.levelup_points += 50
+                    MainMenuActivity.user!!.completed_tasks += 1
+                    startActivity(Intent(activity, MainMenuActivity::class.java))
                 }
                 DialogInterface.BUTTON_NEUTRAL -> {
                 }

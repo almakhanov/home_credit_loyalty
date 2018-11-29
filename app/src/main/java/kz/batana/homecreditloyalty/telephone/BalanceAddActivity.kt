@@ -1,5 +1,6 @@
 package kz.batana.homecreditloyalty.telephone
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v7.app.ActionBar
@@ -10,8 +11,12 @@ import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.view.animation.AnimationUtils
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_balance_add.*
 import kz.batana.homecreditloyalty.R
+import kz.batana.homecreditloyalty.mainMenu.MainMenuActivity
+import kz.batana.homecreditloyalty.tasks_tabs.TasksService
+import org.koin.android.ext.android.inject
 
 class BalanceAddActivity : AppCompatActivity() {
 
@@ -51,7 +56,7 @@ class BalanceAddActivity : AppCompatActivity() {
             }
 
         })
-        setSupportActionBar(toolbar)
+        setSupportActionBar(toolbarbalance)
         val actionBar: ActionBar? = supportActionBar
         actionBar?.title = "Пополнение баланса"
         actionBar?.apply {
@@ -61,7 +66,7 @@ class BalanceAddActivity : AppCompatActivity() {
             this.setDisplayShowTitleEnabled(true)
         }
 
-        toolbar.setOnMenuItemClickListener {
+        toolbarbalance.setOnMenuItemClickListener {
             when(it.itemId){
                 R.id.done ->{
 
@@ -71,6 +76,14 @@ class BalanceAddActivity : AppCompatActivity() {
                     true
                 }
             }
+        }
+
+        commit.setOnClickListener{
+            Toast.makeText(this, "Спасибо за платеж!", Toast.LENGTH_SHORT).show()
+            Thread.sleep(500)
+            MainMenuActivity.user!!.current_points -= bonus.text.toString().toInt()
+            startActivity(Intent(this, MainMenuActivity::class.java))
+            finish()
         }
         bonus.addTextChangedListener(object: TextWatcher{
             override fun afterTextChanged(s: Editable?) {
@@ -83,7 +96,7 @@ class BalanceAddActivity : AppCompatActivity() {
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 if (!s.isNullOrEmpty()){
-                    if (s!!.toString().toInt()>1000){
+                    if (s!!.toString().toInt()>MainMenuActivity.user!!.current_points){
                         bonus.startAnimation(AnimationUtils.loadAnimation(this@BalanceAddActivity,R.anim.shake))
                         bonus.setTextColor(Color.RED)
                         commit.setBackgroundResource(R.color.colorType)
@@ -102,8 +115,11 @@ class BalanceAddActivity : AppCompatActivity() {
 
         })
 
+        tel_balance.text = MainMenuActivity.user!!.current_points.toString()
 
-    }
+
+
+    }    private val serice: TasksService by inject()
 
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()

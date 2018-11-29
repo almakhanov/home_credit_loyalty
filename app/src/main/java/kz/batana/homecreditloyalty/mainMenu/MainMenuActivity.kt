@@ -19,6 +19,7 @@ import kz.batana.homecreditloyalty.R
 import kz.batana.homecreditloyalty.auth.LoginActivity
 import kz.batana.homecreditloyalty.core.util.Logger
 import kz.batana.homecreditloyalty.entity.Customer
+import kz.batana.homecreditloyalty.entity.Task
 import kz.batana.homecreditloyalty.history.HistoryFragment
 import kz.batana.homecreditloyalty.report.ReportFragment
 import kz.batana.homecreditloyalty.service.ServiceFragment
@@ -34,6 +35,7 @@ class MainMenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
     private val sharedPref: SharedPreferences by inject()
     companion object {
         var user:Customer?=null
+        var tasks:ArrayList<Task>?=null
 
     }
 

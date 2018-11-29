@@ -12,11 +12,9 @@ import android.view.View
 import android.view.ViewGroup
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.fragment_doing_tasks.*
 import kotlinx.android.synthetic.main.fragment_done_tasks.*
 import kz.batana.homecreditloyalty.App
 import kz.batana.homecreditloyalty.Constants
-
 import kz.batana.homecreditloyalty.R
 import kz.batana.homecreditloyalty.core.util.Logger
 import kz.batana.homecreditloyalty.entity.Task
@@ -27,7 +25,7 @@ import org.koin.android.ext.android.inject
 class DoneTasksFragment : Fragment(), CurrentTasksAdapter.OnItemClickListener {
 
     private val service: TasksService by inject()
-
+    private lateinit var currentTasksAdapter: CurrentTasksAdapter
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -47,12 +45,12 @@ class DoneTasksFragment : Fragment(), CurrentTasksAdapter.OnItemClickListener {
                 }
                 .subscribe(
                         {
-                            val list = it as ArrayList<Task>
+                            Logger.msg("accepted", it.toString())
                             val filter = ArrayList<Task>()
-                            for(i in list){
-                                if(i.status.toLowerCase() == "done"){
-                                    filter.add(i)
-                                }
+                            var cnt =0
+                            for(i in it as ArrayList<Task>){
+                                if(cnt < 3)filter.add(i)
+                                cnt++
                             }
                             setRecycler(filter)
                         },
@@ -62,8 +60,9 @@ class DoneTasksFragment : Fragment(), CurrentTasksAdapter.OnItemClickListener {
     }
 
     private fun setRecycler(list: ArrayList<Task>){
-        recycler_done.layoutManager = LinearLayoutManager(context)
-        recycler_done.adapter = CurrentTasksAdapter(list, this)
+        recycler_done?.layoutManager = LinearLayoutManager(activity)
+        currentTasksAdapter = CurrentTasksAdapter(list, this)
+        recycler_done?.adapter = currentTasksAdapter
     }
 
     override fun onItemClicked(course: Task) {

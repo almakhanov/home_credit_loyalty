@@ -1,14 +1,21 @@
 package kz.batana.homecreditloyalty.onay
 
+import android.content.Intent
 import android.graphics.Color
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.app.ActionBar
+import android.support.v7.app.AppCompatActivity
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.animation.AnimationUtils
+import android.widget.Toast
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_onay.*
 import kz.batana.homecreditloyalty.R
+import kz.batana.homecreditloyalty.mainMenu.MainMenuActivity
+import kz.batana.homecreditloyalty.tasks_tabs.TasksService
+import org.koin.android.ext.android.inject
 import java.lang.StringBuilder
 
 class OnayActivity : AppCompatActivity() {
@@ -93,17 +100,17 @@ class OnayActivity : AppCompatActivity() {
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 if (!s.isNullOrEmpty()){
-                    if (s!!.toString().toInt()>1000){
+                    if (s!!.toString().toInt()>MainMenuActivity.user!!.current_points){
                         bonus.startAnimation(AnimationUtils.loadAnimation(this@OnayActivity,R.anim.shake))
                         bonus.setTextColor(Color.RED)
-                        commit.setBackgroundResource(R.color.colorType)
-                        commit.isEnabled=false
+                        commitOnay.setBackgroundResource(R.color.colorType)
+                        commitOnay.isEnabled=false
                     }
                     else{
                         if(s.toString().toInt()>0)
                             bonus.setTextColor(Color.BLACK)
-                            commit.setBackgroundResource(R.color.colorPrimary)
-                            commit.isEnabled= true
+                        commitOnay.setBackgroundResource(R.color.colorPrimary)
+                        commitOnay.isEnabled= true
                     }
                 }
                 else{
@@ -111,10 +118,25 @@ class OnayActivity : AppCompatActivity() {
             }
 
         })
+            onay_balance.text = MainMenuActivity.user!!.current_points.toString()
+        commitOnay.setOnClickListener{ view ->
+            serice.pay(MainMenuActivity.user!!.id, bonus.text.toString().toInt())
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe({
+                        Toast.makeText(this, "Спасибо за платеж!", Toast.LENGTH_SHORT).show()
+                        Thread.sleep(500)
+                        MainMenuActivity.user!!.current_points -= bonus.text.toString().toInt()
+                        startActivity(Intent(this, MainMenuActivity::class.java))
+                        finish()
+                    },{
+
+                    })
+        }
 
 
     }
-
+    private val serice: TasksService by inject()
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return true

@@ -1,15 +1,18 @@
 package kz.batana.homecreditloyalty.autoPayment
 
-import android.support.v7.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.ActionBar
+import android.support.v7.app.AppCompatActivity
 import android.telephony.PhoneNumberFormattingTextWatcher
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_auto_payment.*
 import kz.batana.homecreditloyalty.R
+import kz.batana.homecreditloyalty.mainMenu.MainMenuActivity
 
 class AutoPaymentActivity : AppCompatActivity() {
 
@@ -57,6 +60,16 @@ class AutoPaymentActivity : AppCompatActivity() {
             this.setDisplayShowHomeEnabled(true)
             this.setHomeAsUpIndicator(R.drawable.ic_arrow_back_black_24dp)
             this.setDisplayShowTitleEnabled(true)
+        }
+
+        sozdat.setOnClickListener{
+            MainMenuActivity.user!!.current_points += 50
+            MainMenuActivity.user!!.levelup_points += 50
+            MainMenuActivity.user!!.completed_tasks += 1
+            Thread.sleep(500)
+            Toast.makeText(this, "Успешно создан!", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, MainMenuActivity::class.java))
+            finish()
         }
 
         toolbar.setOnMenuItemClickListener {

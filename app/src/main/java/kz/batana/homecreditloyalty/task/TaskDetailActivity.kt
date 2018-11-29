@@ -13,12 +13,11 @@ import android.view.View
 import android.widget.EditText
 import android.widget.RatingBar
 import android.widget.Toast
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_task_detail.*
 import kotlinx.android.synthetic.main.fragment_report.*
 import kz.batana.homecreditloyalty.Constants
 import kz.batana.homecreditloyalty.R
+import kz.batana.homecreditloyalty.autoPayment.AutoPaymentActivity
 import kz.batana.homecreditloyalty.core.util.Logger
 import kz.batana.homecreditloyalty.entity.Task
 import kz.batana.homecreditloyalty.mainMenu.MainMenuActivity
@@ -47,7 +46,7 @@ class TaskDetailActivity : AppCompatActivity() {
             Logger.msg("accepted", task.expiredDate!!.toLowerCase())
             when(task.expiredDate!!.toLowerCase()){
                 "tel" -> {
-
+                    startActivity(Intent(this, AutoPaymentActivity::class.java))
                 }
                 "card" -> {
 
@@ -102,17 +101,13 @@ class TaskDetailActivity : AppCompatActivity() {
         val dialogClickListener = DialogInterface.OnClickListener{ _, which ->
             when(which){
                 DialogInterface.BUTTON_POSITIVE -> {
-                    taskService.addPoint(MainMenuActivity.user!!.id, task.id)
-                            .subscribeOn(Schedulers.io())
-                            .observeOn(AndroidSchedulers.mainThread())
-                            .subscribe({
-                                MainMenuActivity.user = it
-                                startActivity(Intent(this, MainMenuActivity::class.java))
-                            },{
-
-                            })
-
                     toast("Спасибо что помогаете нам!")
+                    Thread.sleep(500)
+                    MainMenuActivity.user!!.current_points += 50
+                    startActivity(Intent(this, MainMenuActivity::class.java))
+                    finish()
+
+
                 }
                 DialogInterface.BUTTON_NEUTRAL -> {
                 }
@@ -155,6 +150,10 @@ class TaskDetailActivity : AppCompatActivity() {
                 DialogInterface.BUTTON_POSITIVE -> {
                     Logger.msg("accepted", dialogEditText.rating)
                     toast("Спасибо за ваш отзыв")
+                    Thread.sleep(500)
+                    MainMenuActivity.user!!.current_points += 50
+                    startActivity(Intent(this, MainMenuActivity::class.java))
+                    finish()
                     layoutEvaluateBox.visibility  = View.GONE
                     sharedPref.edit()
                             .putInt(Constants.EVALUATE, 1)
@@ -187,8 +186,11 @@ class TaskDetailActivity : AppCompatActivity() {
         val dialogClickListener = DialogInterface.OnClickListener{ _, which ->
             when(which){
                 DialogInterface.BUTTON_POSITIVE -> {
-                    //TODO
                     toast("Спасибо что помогаете нам!")
+                    Thread.sleep(500)
+                    MainMenuActivity.user!!.current_points += 50
+                    startActivity(Intent(this, MainMenuActivity::class.java))
+                    finish()
                 }
                 DialogInterface.BUTTON_NEUTRAL -> {
                 }
@@ -230,8 +232,11 @@ class TaskDetailActivity : AppCompatActivity() {
         val dialogClickListener = DialogInterface.OnClickListener{ _, which ->
             when(which){
                 DialogInterface.BUTTON_POSITIVE -> {
-                    //TODO
                     toast("Спасибо за ваш отзыв!")
+                    Thread.sleep(500)
+                    MainMenuActivity.user!!.current_points += 50
+                    startActivity(Intent(this, MainMenuActivity::class.java))
+                    finish()
                     layoutFeefbackBox.visibility  = View.GONE
                     sharedPref.edit()
                             .putInt(Constants.FEEDBACK, 1)
@@ -278,8 +283,11 @@ class TaskDetailActivity : AppCompatActivity() {
         val dialogClickListener = DialogInterface.OnClickListener{ _, which ->
             when(which){
                 DialogInterface.BUTTON_POSITIVE -> {
-                    //TODO
                     toast("Спасибо, скоро ответим!")
+                    Thread.sleep(500)
+                    MainMenuActivity.user!!.current_points += 50
+                    startActivity(Intent(this, MainMenuActivity::class.java))
+                    finish()
                 }
                 DialogInterface.BUTTON_NEUTRAL -> {
                 }

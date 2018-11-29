@@ -1,27 +1,27 @@
 {
   "project_info": {
-    "project_number": "226590224733",
-    "firebase_url": "https://homecreditloyalty.firebaseio.com",
-    "project_id": "homecreditloyalty",
-    "storage_bucket": "homecreditloyalty.appspot.com"
+    "project_number": "608445591766",
+    "firebase_url": "https://homebank-1dbee.firebaseio.com",
+    "project_id": "homebank-1dbee",
+    "storage_bucket": "homebank-1dbee.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:226590224733:android:8389790e91b523ce",
+        "mobilesdk_app_id": "1:608445591766:android:8389790e91b523ce",
         "android_client_info": {
           "package_name": "kz.batana.homecreditloyalty"
         }
       },
       "oauth_client": [
         {
-          "client_id": "226590224733-9cuc16hb48suv29hnpnv980fkirrugqo.apps.googleusercontent.com",
+          "client_id": "608445591766-2d2a7gtlumahajl6grphqt35sner849c.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCmKLprH-s35Bzk1zFu5YczZHCAQzHKemU"
+          "current_key": "AIzaSyDws5zUEGEIJtBAxJjHGa5jnelU9knLqf8"
         }
       ],
       "services": {
