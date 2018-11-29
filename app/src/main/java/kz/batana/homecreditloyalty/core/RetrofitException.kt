@@ -1,5 +1,6 @@
 package kz.batana.homecreditloyalty.core
 
+import kz.batana.homecreditloyalty.App
 import retrofit2.Response
 import retrofit2.Retrofit
 import java.io.IOException
@@ -61,10 +62,12 @@ class RetrofitException internal constructor(message: String,
     companion object {
         fun httpError(url: String, response: Response<*>, retrofit: Retrofit): RetrofitException {
             val message = response.code().toString() + " " + response.message()
+            App.internetConnected = false
             return RetrofitException(message, url, response, Kind.HTTP, null, retrofit)
         }
 
         fun networkError(exception: IOException): RetrofitException {
+            App.internetConnected = false
             return RetrofitException(exception.message!!, null, null, Kind.NETWORK, exception, null)
         }
 

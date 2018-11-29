@@ -23,6 +23,23 @@ class LoginPresenter(private val repository: LoginContract.LoginRepository): Log
                 })
     }
 
+    @SuppressLint("CheckResult")
+    override fun signInLocallY(email:String, password:String) {
+        repository.loginLocallY()
+                .doOnSubscribe { getView()?.showProgress() }
+                .doOnComplete { getView()?.hideProgress() }
+                .subscribe({
+                    if (it.isNotEmpty()) {
+                        getView()?.success(it[0])
+                    }
+                    else{
+                        getView()?.showError("Неправильный пароль или логин")
+                    }
+                },{
+                    getView()?.showError("Нет соединение с сервером")
+                })
+    }
+
     override fun viewIsReady() {
 
     }

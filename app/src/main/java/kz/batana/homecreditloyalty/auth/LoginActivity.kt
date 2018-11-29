@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.Toast
 import com.google.firebase.iid.FirebaseInstanceId
 import kotlinx.android.synthetic.main.activity_login.*
+import kz.batana.homecreditloyalty.App
 import kz.batana.homecreditloyalty.Constants
 import kz.batana.homecreditloyalty.R
 import kz.batana.homecreditloyalty.entity.Customer
@@ -17,7 +18,7 @@ import kz.batana.homecreditloyalty.registration.RegistrationActivity
 import org.koin.android.ext.android.inject
 import java.io.Serializable
 
-class LoginActivity : AppCompatActivity(),LoginContract.LoginView {
+class LoginActivity : AppCompatActivity(), LoginContract.LoginView {
     override fun showProgress() {
         progressBar.visibility = View.VISIBLE
         loginSignInButton.text = ""
@@ -35,8 +36,8 @@ class LoginActivity : AppCompatActivity(),LoginContract.LoginView {
         finish()
     }
 
-    override fun showError(text:String) {
-        Toast.makeText(this,text , Toast.LENGTH_LONG).show()
+    override fun showError(text: String) {
+        Toast.makeText(this, text, Toast.LENGTH_LONG).show()
     }
 
     private val sharedPref: SharedPreferences by inject()
@@ -46,12 +47,11 @@ class LoginActivity : AppCompatActivity(),LoginContract.LoginView {
         setContentView(R.layout.activity_login)
         presenter.attachView(this)
 
-        if(sharedPref.getInt(Constants.DOWNLOADED,0) == 0){
+        if (sharedPref.getInt(Constants.DOWNLOADED, 0) == 0) {
             sharedPref.edit().putInt(Constants.DOWNLOADED, 1).apply()
-
         }
 
-        loginRegisterButton.setOnClickListener{
+        loginRegisterButton.setOnClickListener {
             startActivity(Intent(this, RegistrationActivity::class.java))
         }
         FirebaseInstanceId.getInstance().instanceId
@@ -61,7 +61,10 @@ class LoginActivity : AppCompatActivity(),LoginContract.LoginView {
                     }
                 }
         loginSignInButton.setOnClickListener { _ ->
-                        presenter.signIn(loginEmailEditText.text.toString(), loginPasswordEditText.text.toString())
-                    }
+            if (App.internetConnected)
+                presenter.signIn(loginEmailEditText.text.toString(), loginPasswordEditText.text.toString())
+            else
+                presenter.signInLocallY(loginEmailEditText.text.toString(), loginPasswordEditText.text.toString())
         }
+    }
 }

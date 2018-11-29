@@ -1,10 +1,7 @@
 package kz.batana.homecreditloyalty.core
 
 import kz.batana.homecreditloyalty.Constants
-import org.koin.dsl.module.module
-
 import kz.batana.homecreditloyalty.core.util.Logger
-import kz.batana.homecreditloyalty.core.RxErrorHandlingCallAdapterFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module.module
@@ -24,8 +21,8 @@ fun createOkHttpClient(): OkHttpClient {
     interceptor.level = HttpLoggingInterceptor.Level.BODY
 
     return OkHttpClient.Builder()
-        .connectTimeout(60L, TimeUnit.SECONDS)
-        .readTimeout(60L, TimeUnit.SECONDS)
+        .connectTimeout(5L, TimeUnit.SECONDS)
+        .readTimeout(5L, TimeUnit.SECONDS)
         .addInterceptor(interceptor).build()
 }
 

@@ -25,12 +25,28 @@ class TaskPresenter(private val repository:TaskContract.TaskRepository):TaskCont
                 })
     }
 
-    override fun viewIsReady() {
+    override fun viewIsReady() {}
 
+    override fun destroy() {}
+
+    @SuppressLint("CheckResult")
+    override fun getTasksLocallY(userId: Int) {
+        repository.getTasksLocallY()
+                .doOnSubscribe { getView()?.showProgress() }
+                .doOnComplete { getView()?.hideProgress() }
+                .subscribe({
+                    val list = it as ArrayList<Task>
+                    val filter = ArrayList<Task>()
+                    for(i in list){
+                        if(i.status.toLowerCase() == "onprogress"){
+                            filter.add(i)
+                        }
+                    }
+                    getView()?.showTasks(filter)
+                },{
+                    Logger.msg("Accepted", it.message)
+                })
     }
 
-    override fun destroy() {
-
-    }
 
 }

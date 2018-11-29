@@ -1,5 +1,6 @@
 package kz.batana.homecreditloyalty.auth
 
+import android.annotation.SuppressLint
 import io.reactivex.Observable
 import kz.batana.homecreditloyalty.core.util.IPresenter
 import kz.batana.homecreditloyalty.core.util.IView
@@ -17,9 +18,12 @@ interface LoginContract{
     interface LoginPresenter: IPresenter<LoginView> {
         fun signIn(email:String, password:String)
 
+        @SuppressLint(value = { "CheckResult" })
+        fun signInLocallY(email: String, password: String)
     }
 
     interface LoginRepository{
         fun login(email:String,password:String):Observable<LoginResponse>
+        fun loginLocallY(): Observable<List<Customer>>
     }
 }

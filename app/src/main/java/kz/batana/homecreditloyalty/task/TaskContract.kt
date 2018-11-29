@@ -14,10 +14,12 @@ interface TaskContract{
 
     interface TaskPresenter: IPresenter<TaskView>{
         fun getTasks(userId:Int)
+        fun getTasksLocallY(userId: Int)
     }
 
     interface TaskRepository{
         fun getTasks(userId:Int): Observable<List<Task>>
+        fun getTasksLocallY(): Observable<List<Task>>
     }
 
 }

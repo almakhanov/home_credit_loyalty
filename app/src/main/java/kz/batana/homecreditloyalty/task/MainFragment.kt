@@ -77,6 +77,11 @@ class MainFragment() : Fragment(), CurrentTasksAdapter.OnItemClickListener, Task
         }
 
 
+        if (App.internetConnected)
+            presenter.getTasks(MainMenuActivity.user!!.id)
+        else
+            presenter.getTasksLocallY(MainMenuActivity.user!!.id)
+
     }
 
     private fun setTasks(taskList: ArrayList<Task>){

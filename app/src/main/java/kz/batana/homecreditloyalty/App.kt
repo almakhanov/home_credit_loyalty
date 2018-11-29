@@ -1,9 +1,7 @@
 package kz.batana.homecreditloyalty
 
-import android.app.AlertDialog
 import android.app.Application
 import android.app.Dialog
-import android.app.ProgressDialog.show
 import android.content.Context
 import org.koin.android.ext.android.startKoin
 
@@ -19,6 +17,7 @@ class App : Application() {
             private set
 
         var loadingDialog: Dialog?= null
+        var internetConnected = true
 
         fun hideProgress(){
             loadingDialog?.dismiss()

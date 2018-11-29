@@ -23,6 +23,7 @@ import kz.batana.homecreditloyalty.core.util.Logger
 import kz.batana.homecreditloyalty.entity.Customer
 import kz.batana.homecreditloyalty.entity.Task
 import kz.batana.homecreditloyalty.history.HistoryFragment
+import kz.batana.homecreditloyalty.local_storage.AppLocalDatabase
 import kz.batana.homecreditloyalty.report.ReportFragment
 import kz.batana.homecreditloyalty.service.ServiceFragment
 import kz.batana.homecreditloyalty.task.MainFragment
@@ -155,6 +156,34 @@ class MainMenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
         drawer_layout.closeDrawer(GravityCompat.START)
 
         return true
+    }
+
+
+
+    private val ls: AppLocalDatabase by inject()
+    private fun lsData(){
+        ls.customerDao().insert(Customer(1,"SHFJASF aFHSFSHj", "asdasd", "dasdasd","dasd",
+                12, 123, 32323, "asdsad",23, ArrayList<Int>()))
+
+
+        ls.taskDao().insert(Task(1, "qweqeqw", "sadasd", "asdad",
+                        "asdasd", 232, "asdaf",90))
+        ls.taskDao().insert(Task(1, "qweqeqw", "sadasd", "asdad",
+                "asdasd", 232, "asdaf",90))
+        ls.taskDao().insert(Task(1, "qweqeqw", "sadasd", "asdad",
+                "asdasd", 232, "asdaf",90))
+        ls.taskDao().insert(Task(1, "qweqeqw", "sadasd", "asdad",
+                "asdasd", 232, "asdaf",90))
+        ls.taskDao().insert(Task(1, "qweqeqw", "sadasd", "asdad",
+                "asdasd", 232, "asdaf",90))
+        ls.taskDao().insert(Task(1, "qweqeqw", "sadasd", "asdad",
+                "asdasd", 232, "asdaf",90))
+        ls.taskDao().insert(Task(1, "qweqeqw", "sadasd", "asdad",
+                "asdasd", 232, "asdaf",90))
+        ls.taskDao().insert(Task(1, "qweqeqw", "sadasd", "asdad",
+                "asdasd", 232, "asdaf",90))
+        ls.taskDao().insert(Task(1, "qweqeqw", "sadasd", "asdad",
+                "asdasd", 232, "asdaf",90))
     }
 
 }

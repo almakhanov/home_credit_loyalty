@@ -6,6 +6,7 @@ import android.arch.persistence.room.PrimaryKey
 @Entity(tableName = "History")
 data class History(
         @PrimaryKey
+        val id: Int,
         var title: String,
         var data: String,
         var from_field: String,
