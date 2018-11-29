@@ -40,9 +40,7 @@
         <activity
             android:name=".mainMenu.MainMenuActivity"
             android:label="@string/title_activity_main_menu"
-            android:theme="@style/MyWhiteColorTheme" >
-
-        </activity>
+            android:theme="@style/MyWhiteColorTheme" />
         <activity
             android:name=".autoPayment.AutoPaymentActivity"
             android:theme="@style/MyWhiteColorTheme" />
@@ -50,14 +48,19 @@
             android:name=".creditCardAdd.CreditCardActivity"
             android:theme="@style/MyWhiteColorTheme" />
         <activity android:name=".converter.ConverterActivity" />
-        <activity android:name=".service.ServiceActivity" />
+        <activity android:name=".service.ServiceActivity">
+
+        </activity>
         <activity android:name=".onay.OnayActivity">
 
         </activity>
         <activity android:name=".telephone.BalanceAddActivity">
 
         </activity>
-        <activity android:name=".task.TaskDetailActivity" />
+
+        <activity android:name=".task.TaskDetailActivity">
+
+        </activity>
 
         <service android:name=".MyFirebaseMessagingService">
             <intent-filter>

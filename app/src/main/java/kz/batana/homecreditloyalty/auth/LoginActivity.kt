@@ -17,6 +17,7 @@ import kz.batana.homecreditloyalty.entity.Customer
 import kz.batana.homecreditloyalty.mainMenu.MainMenuActivity
 import kz.batana.homecreditloyalty.registration.RegistrationActivity
 import org.koin.android.ext.android.inject
+import java.io.Serializable
 
 class LoginActivity : AppCompatActivity(),LoginContract.LoginView {
     private val sharedPref: SharedPreferences by inject()
@@ -44,23 +45,25 @@ class LoginActivity : AppCompatActivity(),LoginContract.LoginView {
                 }
         loginSignInButton.setOnClickListener { _ ->
 
-            progressBar.visibility= View.VISIBLE
-            loginSignInButton.text = ""
-            service.authorize(loginEmailEditText.text.toString(),loginPasswordEditText.text.toString())
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe {
-                        if (it.code ==0){
-                            val user: Customer = it.user!!
-                            val intent = Intent(this, MainMenuActivity::class.java)
-                            intent.putExtra("user",user as Parcelable)
-                            startActivity(intent)
-                            finish()
-                        }else{
-                            progressBar.visibility= View.GONE
-                            loginSignInButton.text = "Войти"
-                        }
+
+
+                        progressBar.visibility = View.VISIBLE
+                        loginSignInButton.text = ""
+                        service.authorize(loginEmailEditText.text.toString(), loginPasswordEditText.text.toString())
+                                .subscribeOn(Schedulers.io())
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .subscribe {
+                                    if (it.code == 0) {
+                                        val user: Customer = it.user!!
+                                        val intent = Intent(this, MainMenuActivity::class.java)
+                                        intent.putExtra("user", user as Serializable)
+                                        startActivity(intent)
+                                        finish()
+                                    } else {
+                                        progressBar.visibility = View.GONE
+                                        loginSignInButton.text = "Войти"
+                                    }
+                                }
                     }
         }
-    }
 }

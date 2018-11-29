@@ -12,9 +12,13 @@ import android.util.Log
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import kz.batana.homecreditloyalty.auth.LoginActivity
+import com.google.firebase.messaging.RemoteMessage
+import kz.batana.homecreditloyalty.tasks_tabs.TasksService
+import org.koin.android.ext.android.inject
+
 
 class MyFirebaseMessagingService: FirebaseMessagingService() {
-
+    private val taskService: TasksService by inject()
     override fun onNewToken(token: String?) {
         super.onNewToken(token)
 
