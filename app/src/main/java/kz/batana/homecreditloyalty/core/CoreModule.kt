@@ -1,5 +1,6 @@
 package kz.batana.homecreditloyalty.core
 
+import kz.batana.homecreditloyalty.Constants
 import org.koin.dsl.module.module
 
 import kz.batana.homecreditloyalty.core.util.Logger
@@ -33,7 +34,7 @@ fun createOkHttpClient(): OkHttpClient {
  */
 inline fun <reified T> createService(okHttpClient: OkHttpClient): T {
     val retrofit = Retrofit.Builder()
-        .baseUrl("http://192.168.43.159:1234/")
+        .baseUrl(Constants.URL)
         .client(okHttpClient)
         .addConverterFactory(GsonConverterFactory.create())
         .addCallAdapterFactory(RxErrorHandlingCallAdapterFactory.create()).build()

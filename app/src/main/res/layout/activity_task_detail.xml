@@ -163,7 +163,6 @@
         android:id="@+id/goToTask"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:enabled="false"
         android:background="@color/colorIcons"
         android:textColor="@color/colorWhite"
         app:layout_constraintBottom_toBottomOf="parent"

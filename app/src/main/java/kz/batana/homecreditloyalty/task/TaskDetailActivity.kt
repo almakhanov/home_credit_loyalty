@@ -1,30 +1,34 @@
 package kz.batana.homecreditloyalty.task
 
 import android.content.DialogInterface
+import android.content.Intent
 import android.content.SharedPreferences
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.app.ActionBar
 import android.support.v7.app.AlertDialog
+import android.support.v7.app.AppCompatActivity
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.widget.EditText
 import android.widget.RatingBar
-import android.widget.TextView
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_task_detail.*
 import kotlinx.android.synthetic.main.fragment_report.*
 import kz.batana.homecreditloyalty.Constants
 import kz.batana.homecreditloyalty.R
+import kz.batana.homecreditloyalty.autoPayment.AutoPaymentActivity
 import kz.batana.homecreditloyalty.core.util.Logger
 import kz.batana.homecreditloyalty.entity.Task
+import kz.batana.homecreditloyalty.mainMenu.MainMenuActivity
+import kz.batana.homecreditloyalty.tasks_tabs.TasksService
 import org.koin.android.ext.android.inject
 
 class TaskDetailActivity : AppCompatActivity() {
 
     private val sharedPref: SharedPreferences by inject()
     lateinit var task: Task
+    private val taskService: TasksService by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,11 +41,12 @@ class TaskDetailActivity : AppCompatActivity() {
         detailTaskVdateValue.text = task.date
         detailTaskVbonusValue.text = task.bonus.toString()
 
-
+        Logger.msg("accepted==", task.expiredDate!!.toLowerCase())
         goToTask.setOnClickListener{
+            Logger.msg("accepted", task.expiredDate!!.toLowerCase())
             when(task.expiredDate!!.toLowerCase()){
                 "tel" -> {
-
+                    startActivity(Intent(this, AutoPaymentActivity::class.java))
                 }
                 "card" -> {
 
@@ -96,8 +101,13 @@ class TaskDetailActivity : AppCompatActivity() {
         val dialogClickListener = DialogInterface.OnClickListener{ _, which ->
             when(which){
                 DialogInterface.BUTTON_POSITIVE -> {
-                    //TODO
                     toast("Спасибо что помогаете нам!")
+                    Thread.sleep(500)
+                    MainMenuActivity.user!!.current_points += 50
+                    startActivity(Intent(this, MainMenuActivity::class.java))
+                    finish()
+
+
                 }
                 DialogInterface.BUTTON_NEUTRAL -> {
                 }
@@ -140,6 +150,10 @@ class TaskDetailActivity : AppCompatActivity() {
                 DialogInterface.BUTTON_POSITIVE -> {
                     Logger.msg("accepted", dialogEditText.rating)
                     toast("Спасибо за ваш отзыв")
+                    Thread.sleep(500)
+                    MainMenuActivity.user!!.current_points += 50
+                    startActivity(Intent(this, MainMenuActivity::class.java))
+                    finish()
                     layoutEvaluateBox.visibility  = View.GONE
                     sharedPref.edit()
                             .putInt(Constants.EVALUATE, 1)
@@ -172,8 +186,11 @@ class TaskDetailActivity : AppCompatActivity() {
         val dialogClickListener = DialogInterface.OnClickListener{ _, which ->
             when(which){
                 DialogInterface.BUTTON_POSITIVE -> {
-                    //TODO
                     toast("Спасибо что помогаете нам!")
+                    Thread.sleep(500)
+                    MainMenuActivity.user!!.current_points += 50
+                    startActivity(Intent(this, MainMenuActivity::class.java))
+                    finish()
                 }
                 DialogInterface.BUTTON_NEUTRAL -> {
                 }
@@ -215,8 +232,11 @@ class TaskDetailActivity : AppCompatActivity() {
         val dialogClickListener = DialogInterface.OnClickListener{ _, which ->
             when(which){
                 DialogInterface.BUTTON_POSITIVE -> {
-                    //TODO
                     toast("Спасибо за ваш отзыв!")
+                    Thread.sleep(500)
+                    MainMenuActivity.user!!.current_points += 50
+                    startActivity(Intent(this, MainMenuActivity::class.java))
+                    finish()
                     layoutFeefbackBox.visibility  = View.GONE
                     sharedPref.edit()
                             .putInt(Constants.FEEDBACK, 1)
@@ -263,8 +283,11 @@ class TaskDetailActivity : AppCompatActivity() {
         val dialogClickListener = DialogInterface.OnClickListener{ _, which ->
             when(which){
                 DialogInterface.BUTTON_POSITIVE -> {
-                    //TODO
                     toast("Спасибо, скоро ответим!")
+                    Thread.sleep(500)
+                    MainMenuActivity.user!!.current_points += 50
+                    startActivity(Intent(this, MainMenuActivity::class.java))
+                    finish()
                 }
                 DialogInterface.BUTTON_NEUTRAL -> {
                 }

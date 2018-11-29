@@ -14,11 +14,17 @@ import android.view.Menu
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_main_menu.*
 import kotlinx.android.synthetic.main.app_bar_main_menu.*
-import kz.batana.homecreditloyalty.Constants
+import kotlinx.android.synthetic.main.nav_header_main_menu.view.*
 import kz.batana.homecreditloyalty.R
 import kz.batana.homecreditloyalty.auth.LoginActivity
+import kz.batana.homecreditloyalty.core.util.Logger
+import kz.batana.homecreditloyalty.entity.Customer
+import kz.batana.homecreditloyalty.entity.Task
+import kz.batana.homecreditloyalty.history.HistoryFragment
 import kz.batana.homecreditloyalty.report.ReportFragment
-import kz.batana.homecreditloyalty.task.TasksFragment
+import kz.batana.homecreditloyalty.service.ServiceFragment
+import kz.batana.homecreditloyalty.task.MainFragment
+import kz.batana.homecreditloyalty.tasks_tabs.TasksBaseFragment
 import org.koin.android.ext.android.inject
 
 
@@ -27,26 +33,34 @@ class MainMenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
     var fragmentManager: FragmentManager = supportFragmentManager
 
     private val sharedPref: SharedPreferences by inject()
-    //    val eventService:EventService by inject()
-//    companion object {
-//        var user:User?=null
-//    }
+    companion object {
+        var user:Customer?=null
+        var tasks:ArrayList<Task>?=null
+
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_menu)
         setSupportActionBar(toolbar)
 
 //        var intent = intent
-//        user = intent.getSerializableExtra("user") as User
+        if(MainMenuActivity.user == null){
+            user = intent.getParcelableExtra("user") as Customer
+        }else{
+            user = MainMenuActivity.user
+        }
+
         toolbar.title = "Главная"
 
-        var tasksFragment = TasksFragment()
-//        var headerView = nav_view.getHeaderView(0)
-//        Logger.msg(user)
-//        headerView.textViewUserName.text = user?.name
-//        headerView.bonusTextView.text = user?.decopoint.toString()
-//        headerView.textViewUserEmail.text = user?.email
-        fragmentManager.beginTransaction().add(R.id.content, tasksFragment).commit()
+        var mainFragment = MainFragment()
+        var headerView = nav_view.getHeaderView(0)
+        Logger.msg(user)
+        headerView.textViewUserName.text = user?.name
+        headerView.bonusTextView.text = user?.current_points.toString()
+        headerView.textViewUserEmail.text = user?.email
+
+        fragmentManager.beginTransaction().add(R.id.content, mainFragment).commit()
         val toggle = ActionBarDrawerToggle(
                 this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close
         )
@@ -60,7 +74,7 @@ class MainMenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
 
     fun updatePoints(points: Int) {
         var headerView = nav_view.getHeaderView(0)
-//        headerView.bonusTextView.text = points.toString()
+        headerView.bonusTextView.text = points.toString()
     }
 
     override fun onBackPressed() {
@@ -73,8 +87,8 @@ class MainMenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
 
     override fun onResume() {
         super.onResume()
-//        var headerView = nav_view.getHeaderView(0)
-//        headerView.bonusTextView.text = user?.decopoint.toString()
+        var headerView = nav_view.getHeaderView(0)
+        headerView.bonusTextView.text = user?.current_points.toString()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -100,28 +114,27 @@ class MainMenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
         when (item.itemId) {
             R.id.nav_news -> {
                 toolbar.title = "Главная"
-                currentFragment = TasksFragment()
+                currentFragment = MainFragment()
             }
             R.id.nav_report -> {
                 toolbar.title = "Сообщить"
                 currentFragment = ReportFragment()
             }
-//            R.id.nav_clubs -> {
-//                toolbar.title = "Спортивные клубы"
-////                currentFragment = ClubsFragment()
-//            }
-//            R.id.nav_history -> {
-//                toolbar.title = "История"
-////                currentFragment = HistoryFragment()
-//            }
-//            R.id.nav_basket -> {
-//                toolbar.title = "Корзина"
-////                currentFragment = BasketFragment()
-//            }
-//
+            R.id.nav_tasks -> {
+                toolbar.title = "Задачи"
+                currentFragment = TasksBaseFragment()
+            }
+            R.id.nav_history -> {
+                toolbar.title = "История"
+                currentFragment = HistoryFragment()
+            }
+            R.id.nav_payments -> {
+                toolbar.title = "Платежи"
+                currentFragment = ServiceFragment()
+            }
             R.id.nav_about -> {
                 val builder = AlertDialog.Builder(this)
-                builder.setMessage("The app was developed by: \nNursultan Almakhanov\nAskhat Telzhanov\nAibek Bekbayev\nAyan Kurmanbay" +
+                builder.setMessage("The app was developed by: \nNursultan Almakhanov\nAskhat Telzhanov\nAbylai Edilbayev\nAyan Kurmanbay" +
                         "\nHackday Almaty 2018")
                         .setPositiveButton("Good!", { dialog, id ->})
                 // Create the AlertDialog object and return it

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="64dp"
+    android:background="@drawable/underline_border"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/iconService"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="16dp"
+        android:src="@drawable/ic_phone_iphone_black_24dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        app:layout_constraintTop_toTopOf="@id/iconService"
+        app:layout_constraintBottom_toBottomOf="@id/iconService"
+        app:layout_constraintStart_toEndOf="@id/iconService"
+        android:layout_marginStart="16dp"
+        android:text="Мобильные услуги"/>
+
+    <ImageView
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@drawable/ic_navigate_next_black_24dp"/>
+</android.support.constraint.ConstraintLayout>
